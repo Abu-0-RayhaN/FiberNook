@@ -31,11 +31,16 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'posts',
+    'authen',
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Add the origins of your frontend applications
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173",
 ]
 MIDDLEWARE = [
+    # this corsheaders middleware has to be top of commonMiddlerware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -43,7 +48,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'

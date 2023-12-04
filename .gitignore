@@ -3,4 +3,5 @@ backend/backend/__pycache__
 backend/posts/__pycache__
 backend/posts/api/__pycache__
 backend/backend/api/__pycache__
+backend/authen/__pycache__
 venv
