@@ -4,4 +4,6 @@ backend/posts/__pycache__
 backend/posts/api/__pycache__
 backend/backend/api/__pycache__
 backend/authentication/__pycache__
+backend/authentication/migrations/
+backend/posts/migrations
 venv
