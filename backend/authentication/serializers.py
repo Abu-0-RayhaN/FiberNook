@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from authentication.models import User
+from django.contrib.auth.hashers import check_password
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -43,21 +44,31 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class UserChangePasswordSerializer(serializers.Serializer):
-    password = serializers.CharField(
+    oldPassword = serializers.CharField(
         max_length=255, style={'input_type': 'password'}, write_only=True)
     password2 = serializers.CharField(
         max_length=255, style={'input_type': 'password'}, write_only=True)
+    password3 = serializers.CharField(
+        max_length=255, style={'input_type': 'password'}, write_only=True)
 
     class Meta:
-        fields = ['password', 'password2']
+        fields = ['oldPassword', 'password2', 'password3']
 
     def validate(self, attrs):
-        password = attrs.get('password')
         password2 = attrs.get('password2')
+        password3 = attrs.get('password3')
+        oldPassword = attrs.get('oldPassword')
         user = self.context.get('user')
-        if password != password2:
+        # Check if old_password matches the current user's password
+        if not check_password(oldPassword, user.password):
+            raise serializers.ValidationError("Current password is incorrect")
+
+        # Check if password2 and password3 match
+        if password2 != password3:
             raise serializers.ValidationError(
-                "Password and Confirm Password dons't match")
-        user.set_password(password)
+                "Password and Confirm Password don't match")
+
+        # Set the new password for the user
+        user.set_password(password2)
         user.save()
         return attrs
