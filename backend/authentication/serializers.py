@@ -2,7 +2,7 @@ from rest_framework import serializers
 from authentication.models import User
 
 
-class UserRegistrationSerializer(serializers):
+class UserRegistrationSerializer(serializers.ModelSerializer):
     # We are writing this because we need confirm password field in our Registration Request
     password2 = serializers.CharField(
         style={'input_type': 'password'}, write_only=True)
@@ -21,4 +21,16 @@ class UserRegistrationSerializer(serializers):
         if password != password2:
             raise serializers.ValidationError(
                 "Password and Confirm Password Doesn't Match")
-        return super().validate(attrs)
+        return attrs
+    # Using this create method because we're using custom user model
+
+    def create(self, validate_data):
+        return User.objects.create_user(**validate_data)
+
+
+class UserLoginSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(max_length=255)
+
+    class Meta:
+        model = User
+        fields = ['email', 'password']
