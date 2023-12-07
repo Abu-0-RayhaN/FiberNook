@@ -1,7 +1,15 @@
+# Imports
 from rest_framework import serializers
 from authentication.models import User
 from django.contrib.auth.hashers import check_password
+from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
+
+# imports
+
+# User Registration
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     # We are writing this because we need confirm password field in our Registration Request
@@ -28,6 +36,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def create(self, validate_data):
         return User.objects.create_user(**validate_data)
 
+# user Login
+
 
 class UserLoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255)
@@ -35,6 +45,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'password']
+
+# user Profile access serializer
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -72,3 +84,56 @@ class UserChangePasswordSerializer(serializers.Serializer):
         user.set_password(password2)
         user.save()
         return attrs
+
+
+class SendPasswordResetEmailSerializer(serializers.Serializer):
+    email = serializers.EmailField(max_length=255)
+
+    class Meta:
+        fields = ['email']
+
+    def validate(self, attrs):
+        email = attrs.get('email')
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            uid = urlsafe_base64_encode(force_bytes(user.id))
+            print("Encoded Uid", uid)
+            token = PasswordResetTokenGenerator().make_token(user)
+            print("Password reset token", token)
+            link = 'http://localhost:3000/api/user/reset/'+uid+'/'+token
+            print("Password Reset Link", link)
+            return attrs
+        else:
+            raise serializers.ValidationError("You are not a Registered User")
+
+
+class UserPasswordResetSerializer(serializers.Serializer):
+    password1 = serializers.CharField(
+        max_length=255, style={'input_type': 'password'}, write_only=True)
+    password2 = serializers.CharField(
+        max_length=255, style={'input_type': 'password'}, write_only=True)
+
+    class Meta:
+        fields = ['password1', 'password2']
+
+    def validate(self, attrs):
+        try:
+            password1 = attrs.get('password1')
+            password2 = attrs.get('password2')
+            uid = self.context.get('uid')
+            # Check if password2 and password3 match
+            token = self.context.get('token')
+            if password1 != password2:
+                raise serializers.ValidationError(
+                    "Password and Confirm Password don't match")
+            id = smart_str(urlsafe_base64_decode(uid))
+            user = user.objects.get(id=id)
+            if not PasswordResetTokenGenerator().check_token(user, token):
+                raise ValidationError('Token is not Valid or Expired')
+            # Set the new password for the user
+            user.set_password(password2)
+            user.save()
+            return attrs
+        except DjangoUnicodeDecodeError is identifier:
+            PasswordResetTokenGenerator().check_token(user, token)
+            raise ValidationError('Token is not Valid or Expired')
