@@ -7,3 +7,4 @@ backend/authentication/__pycache__
 backend/authentication/migrations/
 backend/posts/migrations
 venv
+.env

@@ -5,11 +5,12 @@ from django.contrib.auth.hashers import check_password
 from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-
+from authentication.utils import Util
 
 # imports
 
 # User Registration
+
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     # We are writing this because we need confirm password field in our Registration Request
@@ -102,6 +103,14 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
             print("Password reset token", token)
             link = 'http://localhost:3000/api/user/reset/'+uid+'/'+token
             print("Password Reset Link", link)
+            # Send Email
+            body = 'Click Following Link to reset Your Password'+link
+            data = {
+                'subject': 'Reset Your Password',
+                'body': body,
+                'to_email': user.email
+            }
+            Util.send_email(data)
             return attrs
         else:
             raise serializers.ValidationError("You are not a Registered User")
@@ -127,13 +136,13 @@ class UserPasswordResetSerializer(serializers.Serializer):
                 raise serializers.ValidationError(
                     "Password and Confirm Password don't match")
             id = smart_str(urlsafe_base64_decode(uid))
-            user = user.objects.get(id=id)
+            user = User.objects.get(id=id)
             if not PasswordResetTokenGenerator().check_token(user, token):
                 raise ValidationError('Token is not Valid or Expired')
             # Set the new password for the user
             user.set_password(password2)
             user.save()
             return attrs
-        except DjangoUnicodeDecodeError is identifier:
+        except DjangoUnicodeDecodeError as identifier:
             PasswordResetTokenGenerator().check_token(user, token)
             raise ValidationError('Token is not Valid or Expired')
