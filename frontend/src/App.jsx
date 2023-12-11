@@ -1,27 +1,16 @@
-import { useEffect, useState } from "react";
-// import axios from "axios";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Pages/Layout";
+import Home from "./components/Pages/Home";
 const App = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    async function FetchData() {
-      console.log(`${import.meta.env.VITE_API_URL}`);
-      try {
-        const reponse = await fetch(`${import.meta.env.VITE_API_URL}`);
-        if (!reponse.ok) {
-          throw new Error("Network reponse was not ok");
-        }
-        const result = await reponse.json();
-        console.log("results is", result);
-        setData(result);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    }
-    FetchData();
-  }, []);
   return (
     <div>
-      {data} <p>hello world</p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
