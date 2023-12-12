@@ -42,7 +42,7 @@ const Registration = () => {
           msg: "Registration Success",
           type: "success",
         });
-        navigate("/");
+        navigate("/login");
       } else {
         setError({
           status: true,

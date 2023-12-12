@@ -5,6 +5,7 @@ import Contact from "./components/Pages/Contact";
 import LoginReg from "./components/Pages/Auth/LoginReg";
 import SendPasswordResetEmail from "./components/Pages/Auth/SendPasswordResetEmail";
 import ResetPassword from "./components/Pages/Auth/ResetPassword";
+import Dashboard from "./components/Pages/Dashboard";
 const App = () => {
   return (
     <div>
@@ -19,6 +20,7 @@ const App = () => {
               element={<SendPasswordResetEmail />}
             />
             <Route path="reset" element={<ResetPassword />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
       </BrowserRouter>
