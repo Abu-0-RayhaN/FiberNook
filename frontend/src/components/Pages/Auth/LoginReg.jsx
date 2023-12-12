@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
-import { Box, Card, Grid, Tabs, Tab } from "@mui/material";
+import { Box, Card, Grid, Tabs, Tab, Typography } from "@mui/material";
 import { pic1 } from "../../../assets/images";
 import { useState } from "react";
 import UserLogin from "./UserLogin";
 import Registration from "./Registration";
+import { ShoppingBag } from "@mui/icons-material";
 const TabPanel = (props) => {
   const { children, value, index } = props;
   return (
@@ -35,7 +36,7 @@ const LoginReg = () => {
         ></Grid>
         <Grid item lg={5} sm={7} xs={12}>
           <Card sx={{ width: "100%", height: "100%" }}>
-            <Box>
+            <Box sx={{ mx: 3 }}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <Tabs
                   textColor="secondary"
@@ -59,6 +60,12 @@ const LoginReg = () => {
               <TabPanel value={value} index={1}>
                 <Registration />
               </TabPanel>
+            </Box>
+            <Box textAlign="center" sx={{ mt: 2 }}>
+              <ShoppingBag sx={{ coor: "purple", fontSize: 100 }} />
+              <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                Geek Shop
+              </Typography>
             </Box>
           </Card>
         </Grid>
