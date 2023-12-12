@@ -3,6 +3,7 @@ import { Box, Card, Grid, Tabs, Tab } from "@mui/material";
 import { pic1 } from "../../../assets/images";
 import { useState } from "react";
 import UserLogin from "./UserLogin";
+import Registration from "./Registration";
 const TabPanel = (props) => {
   const { children, value, index } = props;
   return (
@@ -56,8 +57,7 @@ const LoginReg = () => {
                 <UserLogin />
               </TabPanel>
               <TabPanel value={value} index={1}>
-                {" "}
-                Registration
+                <Registration />
               </TabPanel>
             </Box>
           </Card>
