@@ -8,13 +8,16 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "../../../services/userAuthApi";
 const Registration = () => {
   const [error, setError] = useState({
     status: false,
     msg: "",
     type: "",
   });
+  const [server_error, setServerError] = useState();
   const navigate = useNavigate();
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
