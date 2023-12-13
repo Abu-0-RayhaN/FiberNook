@@ -2,6 +2,7 @@ import { TextField, Button, Box, Alert, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../../services/userAuthApi";
+import { storeToken } from "../../../services/LocalStorageService";
 const UserLogin = () => {
   const [server_error, setServerError] = useState({});
   const [loginUser, { isLoading }] = useLoginUserMutation();
@@ -19,7 +20,8 @@ const UserLogin = () => {
       setServerError(res.error.data.errors);
     }
     if (res.data) {
-      // console.log(res.data);
+      console.log(res.data.token);
+      storeToken(res.data.token);
       navigate("/dashboard");
     }
   };
