@@ -10,55 +10,31 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../../../services/userAuthApi";
 const Registration = () => {
-  const [error, setError] = useState({
-    status: false,
-    msg: "",
-    type: "",
-  });
-  const [server_error, setServerError] = useState();
+  const [server_error, setServerError] = useState({});
   const navigate = useNavigate();
-  const [registerUser, { isLoading }] = useRegisterUserMutation();
-  const handleSubmit = (e) => {
+  const [registerUser] = useRegisterUserMutation();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const actualData = {
-      email: data.get("email"),
-      name: data.get("name"),
-      password: data.get("password"),
-      confirm_pass: data.get("password_confirmation"),
-      tc: data.get("tc"),
-    };
-    // checking if all the data exists in the form
-    if (
-      actualData.email &&
-      actualData.password &&
-      actualData.confirm_pass &&
-      actualData.name &&
-      actualData.tc !== null
-    ) {
-      //checking if pass and confirm pass match
-      if (actualData.password === actualData.confirm_pass) {
-        console.log(actualData);
-        document.getElementById("registration-form").reset();
-        setError({
-          status: true,
-          msg: "Registration Success",
-          type: "success",
-        });
-        navigate("/login");
-      } else {
-        setError({
-          status: true,
-          msg: "Password and Confirm Password does not match!",
-          type: "error",
-        });
+    try {
+      const data = new FormData(e.currentTarget);
+      const actualData = {
+        email: data.get("email"),
+        name: data.get("name"),
+        password: data.get("password"),
+        password2: data.get("password_confirmation"),
+        tc: data.get("tc"),
+      };
+      const res = await registerUser(actualData);
+      if (res.error) {
+        // console.log(res.error.data.errors.non_field_errors);
+        setServerError(res.error.data.errors);
       }
-    } else {
-      setError({
-        status: true,
-        msg: "All Fields are Required",
-        type: "error",
-      });
+      if (res.data) {
+        // console.log(res.data);
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.error("An error Occureed", error);
     }
   };
   return (
@@ -79,6 +55,11 @@ const Registration = () => {
           label="Name"
           margin="normal"
         />
+        {server_error.name ? (
+          <Alert severity="error">{server_error.name[0]}</Alert>
+        ) : (
+          ""
+        )}
         <TextField
           required
           fullWidth
@@ -87,6 +68,11 @@ const Registration = () => {
           label="Email Address"
           margin="normal"
         />
+        {server_error.email ? (
+          <Alert severity="error">{server_error.email[0]}</Alert>
+        ) : (
+          ""
+        )}
         <TextField
           required
           fullWidth
@@ -95,7 +81,13 @@ const Registration = () => {
           label="Password"
           type="password"
           margin="normal"
+          autoComplete="current-password"
         />
+        {server_error.password ? (
+          <Alert severity="error">{server_error.password[0]}</Alert>
+        ) : (
+          ""
+        )}
         <TextField
           required
           fullWidth
@@ -104,11 +96,29 @@ const Registration = () => {
           label="Confirm Password"
           type="password"
           margin="normal"
+          autoComplete="current-password"
         />
+        {server_error.password2 ? (
+          <Alert severity="error">{server_error.password2[0]}</Alert>
+        ) : (
+          ""
+        )}
         <FormControlLabel
-          control={<Checkbox value="agree" color="primary" name="tc" id="tc" />}
+          control={<Checkbox value="true" color="primary" name="tc" id="tc" />}
           label="I agree to term and condition."
         />
+        {server_error.tc ? (
+          <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
+            {server_error.tc[0]}
+          </span>
+        ) : (
+          ""
+        )}
+        {server_error.non_field_errors ? (
+          <Alert severity="error">{server_error.non_field_errors[0]}</Alert>
+        ) : (
+          ""
+        )}
         <Box textAlign="center">
           <Button
             type="submit"
@@ -118,7 +128,6 @@ const Registration = () => {
             Register
           </Button>
         </Box>
-        {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ""}
       </Box>
     </>
   );
