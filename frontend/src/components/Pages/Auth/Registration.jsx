@@ -56,7 +56,9 @@ const Registration = () => {
           margin="normal"
         />
         {server_error.name ? (
-          <Alert severity="error">{server_error.name[0]}</Alert>
+          <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
+            {server_error.name[0]}
+          </span>
         ) : (
           ""
         )}
@@ -69,7 +71,9 @@ const Registration = () => {
           margin="normal"
         />
         {server_error.email ? (
-          <Alert severity="error">{server_error.email[0]}</Alert>
+          <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
+            {server_error.email[0]}
+          </span>
         ) : (
           ""
         )}
@@ -84,7 +88,9 @@ const Registration = () => {
           autoComplete="current-password"
         />
         {server_error.password ? (
-          <Alert severity="error">{server_error.password[0]}</Alert>
+          <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
+            {server_error.password[0]}
+          </span>
         ) : (
           ""
         )}
@@ -99,10 +105,13 @@ const Registration = () => {
           autoComplete="current-password"
         />
         {server_error.password2 ? (
-          <Alert severity="error">{server_error.password2[0]}</Alert>
+          <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
+            {server_error.password2[0]}
+          </span>
         ) : (
           ""
         )}
+        <br></br>
         <FormControlLabel
           control={<Checkbox value="true" color="primary" name="tc" id="tc" />}
           label="I agree to term and condition."
