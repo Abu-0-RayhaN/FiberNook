@@ -1,52 +1,31 @@
-import { TextField, Button, Box, Alert } from "@mui/material";
+import { TextField, Button, Box } from "@mui/material";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useChangeUserPasswordMutation } from "../../../services/userAuthApi";
+// import { getToken } from "../../../services/LocalStorageService";
+// import { useNavigate } from "react-router-dom";
 const ChangePassword = () => {
-  const [error, setError] = useState({
-    status: false,
-    msg: "",
-    type: "",
-  });
-  const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const [server_error, setServerError] = useState({});
+  const [changeUserPassword] = useChangeUserPasswordMutation();
+  // const { access_token } = getToken();
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const actualData = {
-      password: data.get("password"),
-      confirm_pass: data.get("password_confirmation"),
+      oldPassword: data.get("oldPassword"),
+      password2: data.get("password2"),
+      password3: data.get("password3"),
     };
-    // checking if all the data exists in the form
-    if (actualData.password && actualData.confirm_pass) {
-      //checking if pass and confirm pass match
-      if (actualData.password === actualData.confirm_pass) {
-        console.log(actualData);
-        document.getElementById("password-change-form").reset();
-        setError({
-          status: true,
-          msg: "Password Change Successfully. Redirecting to login",
-          type: "success",
-        });
-        setTimeout(() => {
-          navigate("/login");
-        }, 3000);
-      } else {
-        setError({
-          status: true,
-          msg: "Password and Confirm Password does not match.",
-          type: "error",
-        });
-      }
-    } else {
-      setError({
-        status: true,
-        msg: "All Fields are Required",
-        type: "error",
-      });
+
+    const res = await changeUserPassword(actualData);
+    if (res.error) {
+      // console.log(res.error.data.errors.non_field_errors);
+      setServerError(res.error.data.errors);
+      console.log("consoling from change pass", server_error);
+    }
+    if (res.data) {
+      console.log("consoling from change pass", res.data.token);
     }
   };
-  const myData = useSelector((state) => state.user);
-  console.log("Printing from changepassword", myData);
   return (
     <>
       <Box
@@ -69,8 +48,17 @@ const ChangePassword = () => {
           <TextField
             required
             fullWidth
-            id="password"
-            name="password"
+            id="oldPassword"
+            name="oldPassword"
+            label="Current Password"
+            type="password"
+            margin="normal"
+          />
+          <TextField
+            required
+            fullWidth
+            id="password2"
+            name="password2"
             label="New Password"
             type="password"
             margin="normal"
@@ -78,8 +66,8 @@ const ChangePassword = () => {
           <TextField
             required
             fullWidth
-            id="password_confirmation"
-            name="password_confirmation"
+            id="password3"
+            name="password3"
             label="Confirm New Password"
             type="password"
             margin="normal"
@@ -93,7 +81,6 @@ const ChangePassword = () => {
               Update
             </Button>
           </Box>
-          {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ""}
         </Box>
       </Box>
     </>
