@@ -6,9 +6,9 @@ const storeToken = (value) => {
   }
 };
 const getToken = () => {
-  let acces_token = localStorage.getItem("access_token");
+  let access_token = localStorage.getItem("access_token");
   let refresh_token = localStorage.getItem("refresh_token");
-  return { acces_token, refresh_token };
+  return { access_token, refresh_token };
 };
 const removeToken = () => {
   localStorage.removeItem("access_token");

@@ -1,12 +1,15 @@
 import { TextField, Button, Box, Alert, CircularProgress } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../../services/userAuthApi";
-import { storeToken } from "../../../services/LocalStorageService";
+import { getToken, storeToken } from "../../../services/LocalStorageService";
+import { useDispatch } from "react-redux";
+import { setUserToken } from "../../../features/authSlice";
 const UserLogin = () => {
   const [server_error, setServerError] = useState({});
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -22,9 +25,15 @@ const UserLogin = () => {
     if (res.data) {
       console.log(res.data.token);
       storeToken(res.data.token);
+      let { access_token } = getToken();
+      dispatch(setUserToken({ access_token: access_token }));
       navigate("/dashboard");
     }
   };
+  let { access_token } = getToken();
+  useEffect(() => {
+    dispatch(setUserToken({ access_token: access_token }));
+  }, [access_token, dispatch]);
   return (
     <>
       <Box

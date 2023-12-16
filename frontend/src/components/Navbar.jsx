@@ -1,6 +1,9 @@
 import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { getToken } from "../services/LocalStorageService";
 const Navbar = () => {
+  const { access_token } = getToken();
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }} />
@@ -29,16 +32,29 @@ const Navbar = () => {
           >
             Contact
           </Button>
-          <Button
-            component={NavLink}
-            to="/login"
-            sx={{ color: "white", textTransform: "none" }}
-            style={({ isActive }) => {
-              return { backgroundColor: isActive ? "#6d1b7b" : "" };
-            }}
-          >
-            Login/Registration
-          </Button>
+          {access_token ? (
+            <Button
+              component={NavLink}
+              to="/dashboard"
+              sx={{ color: "white", textTransform: "none" }}
+              style={({ isActive }) => {
+                return { backgroundColor: isActive ? "#6d1b7b" : "" };
+              }}
+            >
+              Dashboard
+            </Button>
+          ) : (
+            <Button
+              component={NavLink}
+              to="/login"
+              sx={{ color: "white", textTransform: "none" }}
+              style={({ isActive }) => {
+                return { backgroundColor: isActive ? "#6d1b7b" : "" };
+              }}
+            >
+              Login/Registration
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </>
