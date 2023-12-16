@@ -1,5 +1,6 @@
 import { TextField, Button, Box, Alert } from "@mui/material";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const ChangePassword = () => {
   const [error, setError] = useState({
@@ -44,6 +45,8 @@ const ChangePassword = () => {
       });
     }
   };
+  const myData = useSelector((state) => state.user);
+  console.log("Printing from changepassword", myData);
   return (
     <>
       <Box
