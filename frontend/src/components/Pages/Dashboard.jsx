@@ -25,6 +25,7 @@ const Dashboard = () => {
       });
     }
   }, [data, isSuccess]);
+  console.log(userData);
   // Store User DAta in Redux Store;
   useEffect(() => {
     if (data && isSuccess) {

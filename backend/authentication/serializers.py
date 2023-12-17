@@ -79,7 +79,7 @@ class UserChangePasswordSerializer(serializers.Serializer):
         # Check if password2 and password3 match
         if password2 != password3:
             raise serializers.ValidationError(
-                "Password and Confirm Password don't match")
+                "Password and Confirm Password does not match")
 
         # Set the new password for the user
         user.set_password(password2)
