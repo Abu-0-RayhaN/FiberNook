@@ -1,40 +1,39 @@
-import { TextField, Button, Box, Alert, Grid } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Alert,
+  Grid,
+  CircularProgress,
+} from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSendPasswordResetEmailMutation } from "../../../services/userAuthApi";
 const SendPasswordResetEmail = () => {
-  const [error, setError] = useState({
-    status: false,
-    msg: "",
-    type: "",
-  });
-  const navigate = useNavigate();
-  const isValidEmail = (email) => {
-    // Regular expression for a basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  const [server_error, setServerError] = useState({});
+  const [server_msg, setServerMsg] = useState({});
+  const [sendPasswordResetEmail, { isLoading }] =
+    useSendPasswordResetEmailMutation();
+  // const isValidEmail = (email) => {
+  //   // Regular expression for a basic email validation
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return emailRegex.test(email);
+  // };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const actualData = {
       email: data.get("email"),
     };
 
-    if (isValidEmail(actualData.email)) {
+    const res = await sendPasswordResetEmail(actualData);
+    if (res.error) {
+      setServerError(res.error.data.errors);
+    }
+    if (res.data) {
+      setServerError({});
+      setServerMsg(res.data);
       document.getElementById("password-reset-email-form").reset();
-      setError({
-        status: true,
-        msg: "Password Reset Email Sent. Check Your Email",
-        type: "success",
-      });
-      navigate("/reset");
-    } else {
-      setError({
-        status: true,
-        msg: "Invalid Email Format. Please provide a valid email address",
-        type: "error",
-      });
     }
   };
   return (
@@ -59,21 +58,37 @@ const SendPasswordResetEmail = () => {
               label="Email Address"
               margin="normal"
             />
-
-            <Box textAlign="center">
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{ mt: 3, mb: 2, px: 5 }}
-              >
-                Send
-              </Button>
-            </Box>
-            {error.status ? (
-              <Alert severity={error.type}>{error.msg}</Alert>
+            {server_error.email ? (
+              <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
+                {server_error.email[0]}
+              </span>
             ) : (
               ""
             )}
+            {server_error.non_field_errors ? (
+              <Alert severity="error">{server_error.non_field_errors[0]}</Alert>
+            ) : (
+              ""
+            )}
+            {server_msg.msg ? (
+              <Alert severity="success">{server_msg.msg}</Alert>
+            ) : (
+              ""
+            )}
+
+            <Box textAlign="center">
+              {isLoading ? (
+                <CircularProgress />
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, px: 5 }}
+                >
+                  Send
+                </Button>
+              )}
+            </Box>
           </Box>
         </Grid>
       </Grid>

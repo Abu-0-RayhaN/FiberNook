@@ -26,7 +26,10 @@ const App = () => {
               path="sendpasswordresetemail"
               element={<SendPasswordResetEmail />}
             />
-            <Route path="reset" element={<ResetPassword />} />
+            <Route
+              path="api/user/reset/:id/:token"
+              element={<ResetPassword />}
+            />
             <Route
               path="/dashboard"
               element={access_token ? <Dashboard /> : <Navigate to="/login" />}

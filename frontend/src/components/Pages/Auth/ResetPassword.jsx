@@ -1,48 +1,42 @@
-import { TextField, Button, Box, Alert, Grid } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Alert,
+  Grid,
+  CircularProgress,
+} from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useResetPasswordMutation } from "../../../services/userAuthApi";
 const ResetPassword = () => {
-  const [error, setError] = useState({
-    status: false,
-    msg: "",
-    type: "",
-  });
+  const [server_error, setServerError] = useState({});
+  const [server_msg, setServerMsg] = useState({});
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
+  const { id, token } = useParams();
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const actualData = {
-      password: data.get("password"),
-      confirm_pass: data.get("password_confirmation"),
+      password1: data.get("password"),
+      password2: data.get("password_confirmation"),
     };
-    // checking if all the data exists in the form
-    if (actualData.password && actualData.confirm_pass) {
-      //checking if pass and confirm pass match
-      if (actualData.password === actualData.confirm_pass) {
-        console.log(actualData);
-        document.getElementById("password-reset-form").reset();
-        setError({
-          status: true,
-          msg: "Password Reset Success. Redirecting to login",
-          type: "success",
-        });
-        setTimeout(() => {
-          navigate("/login");
-        }, 3000);
-      } else {
-        setError({
-          status: true,
-          msg: "Password and Confirm Password does not match.",
-          type: "error",
-        });
-      }
-    } else {
-      setError({
-        status: true,
-        msg: "All Fields are Required",
-        type: "error",
-      });
+    const res = await resetPassword({ actualData, id, token });
+    if (res.error) {
+      setServerError(res.error.data.errors);
+      setServerMsg({});
     }
+    if (res.data) {
+      setServerError({});
+      setServerMsg(res.data);
+      document.getElementById("password-reset-form").reset();
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    }
+
+    // checking if all the data exists in the form
   };
   return (
     <>
@@ -65,6 +59,13 @@ const ResetPassword = () => {
               type="password"
               margin="normal"
             />
+            {server_error.password1 ? (
+              <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
+                {server_error.password1[0]}
+              </span>
+            ) : (
+              ""
+            )}
             <TextField
               required
               fullWidth
@@ -74,20 +75,36 @@ const ResetPassword = () => {
               type="password"
               margin="normal"
             />
-            <Box textAlign="center">
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{ mt: 3, mb: 2, px: 5 }}
-              >
-                Submit
-              </Button>
-            </Box>
-            {error.status ? (
-              <Alert severity={error.type}>{error.msg}</Alert>
+            {server_error.password2 ? (
+              <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
+                {server_error.password2[0]}
+              </span>
             ) : (
               ""
             )}
+            {server_error.non_field_errors ? (
+              <Alert severity="error">{server_error.non_field_errors[0]}</Alert>
+            ) : (
+              ""
+            )}
+            {server_msg.msg ? (
+              <Alert severity="success">{server_msg.msg}</Alert>
+            ) : (
+              ""
+            )}
+            <Box textAlign="center">
+              {isLoading ? (
+                <CircularProgress />
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, px: 5 }}
+                >
+                  Send
+                </Button>
+              )}
+            </Box>
           </Box>
         </Grid>
       </Grid>
