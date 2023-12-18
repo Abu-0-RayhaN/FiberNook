@@ -116,7 +116,7 @@ const ChangePassword = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2, px: 5 }}
               >
-                Login
+                Change Password
               </Button>
             )}
           </Box>
