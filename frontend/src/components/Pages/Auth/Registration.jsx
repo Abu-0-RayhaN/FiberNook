@@ -10,7 +10,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../../../services/userAuthApi";
 import { storeToken } from "../../../services/LocalStorageService";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../features/titleSlice";
 const Registration = () => {
+  //setting page title
+  const dispatch = useDispatch();
+  dispatch(setTitle("Geek Shop | Sign Up"));
+
   const [server_error, setServerError] = useState({});
   const navigate = useNavigate();
   const [registerUser] = useRegisterUserMutation();

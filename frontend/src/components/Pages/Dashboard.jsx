@@ -7,11 +7,17 @@ import { UnsetUserToken } from "../../features/authSlice";
 import { useGetLoggedUserQuery } from "../../services/userAuthApi";
 import { useEffect, useState } from "react";
 import { UnsetUserInfo, setUserInfo } from "../../features/userSlice";
+import { setTitle } from "../../features/titleSlice";
 const Dashboard = () => {
-  const navigate = useNavigate();
+  //setting page title
   const dispatch = useDispatch();
+  dispatch(setTitle("Geek Shop | Dashboard"));
+
+  //navigation and fetching acccess token
+  const navigate = useNavigate();
   const { access_token } = getToken();
-  // console.log("Printing from dashboard", access_token);
+
+  // fetching logged user data
   const { data, isSuccess } = useGetLoggedUserQuery(access_token);
   const [userData, setUserData] = useState({
     email: "",
@@ -25,8 +31,8 @@ const Dashboard = () => {
       });
     }
   }, [data, isSuccess]);
-  console.log(userData);
-  // Store User DAta in Redux Store;
+
+  // Store User Data in Redux Store;
   useEffect(() => {
     if (data && isSuccess) {
       dispatch(
@@ -37,12 +43,15 @@ const Dashboard = () => {
       );
     }
   }, [data, isSuccess, dispatch]);
-  // console.log("use DAta", data);
+
+  // logout| unsetting redux store data and localstorage
   const handleLogout = () => {
     dispatch(UnsetUserToken({ access_token: null }));
     dispatch(UnsetUserInfo({ name: "", email: "" }));
     removeToken();
-    navigate("/login");
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
   };
   return (
     <>

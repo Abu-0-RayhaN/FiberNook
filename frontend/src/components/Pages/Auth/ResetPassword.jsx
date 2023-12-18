@@ -9,7 +9,11 @@ import {
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useResetPasswordMutation } from "../../../services/userAuthApi";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../features/titleSlice";
 const ResetPassword = () => {
+  const dispatch = useDispatch();
+  dispatch(setTitle("Geek Shop | Reset Password"));
   const [server_error, setServerError] = useState({});
   const [server_msg, setServerMsg] = useState({});
   const [resetPassword, { isLoading }] = useResetPasswordMutation();

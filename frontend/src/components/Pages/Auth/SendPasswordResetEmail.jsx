@@ -8,7 +8,11 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useSendPasswordResetEmailMutation } from "../../../services/userAuthApi";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../features/titleSlice";
 const SendPasswordResetEmail = () => {
+  const dispatch = useDispatch();
+  dispatch(setTitle("Geek Shop | Reset Password"));
   const [server_error, setServerError] = useState({});
   const [server_msg, setServerMsg] = useState({});
   const [sendPasswordResetEmail, { isLoading }] =

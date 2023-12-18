@@ -5,11 +5,14 @@ import { useLoginUserMutation } from "../../../services/userAuthApi";
 import { getToken, storeToken } from "../../../services/LocalStorageService";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../../features/authSlice";
+import { setTitle } from "../../../features/titleSlice";
 const UserLogin = () => {
+  //setting page title
+  const dispatch = useDispatch();
+  dispatch(setTitle("Geek Shop | Sign In"));
   const [server_error, setServerError] = useState({});
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);

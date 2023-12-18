@@ -6,9 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { UnsetUserToken } from "../../../features/authSlice";
 import { UnsetUserInfo } from "../../../features/userSlice";
+import { setTitle } from "../../../features/titleSlice";
 const ChangePassword = () => {
-  const navigate = useNavigate();
+  //setting page title
   const dispatch = useDispatch();
+  dispatch(setTitle("Geek Shop | Sign Up"));
+  const navigate = useNavigate();
   const [server_error, setServerError] = useState({});
   const [changeUserPassword, { isLoading }] = useChangeUserPasswordMutation();
   const { access_token } = getToken();

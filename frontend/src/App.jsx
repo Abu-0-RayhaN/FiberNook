@@ -7,8 +7,14 @@ import SendPasswordResetEmail from "./components/Pages/Auth/SendPasswordResetEma
 import ResetPassword from "./components/Pages/Auth/ResetPassword";
 import Dashboard from "./components/Pages/Dashboard";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
+  const title = useSelector((state) => state.title.title);
+  useEffect(() => {
+    // Set the document title dynamically
+    document.title = title;
+  }, [title]);
   return (
     <div>
       <BrowserRouter>

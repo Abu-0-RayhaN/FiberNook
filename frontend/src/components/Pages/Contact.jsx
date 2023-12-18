@@ -1,4 +1,10 @@
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../features/titleSlice";
+
 const Contact = () => {
+  //setting page title
+  const dispatch = useDispatch();
+  dispatch(setTitle("Geek Shop | Contact Us"));
   return (
     <div>
       Contact Page <hr />
