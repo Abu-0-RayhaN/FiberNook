@@ -1,0 +1,1 @@
+i'm using django-cors-headers because in browsers website cannot ask for things from another domain. but here i am using seperate frontend and backend that is why i need to use this to be able to access data from another domain.(Cross Origin Resource Sharing)

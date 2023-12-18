@@ -79,7 +79,7 @@ class UserChangePasswordSerializer(serializers.Serializer):
         # Check if password2 and password3 match
         if password2 != password3:
             raise serializers.ValidationError(
-                "Password and Confirm Password don't match")
+                "Password and Confirm Password does not match")
 
         # Set the new password for the user
         user.set_password(password2)
@@ -98,17 +98,29 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
         if User.objects.filter(email=email).exists():
             user = User.objects.get(email=email)
             uid = urlsafe_base64_encode(force_bytes(user.id))
-            print("Encoded Uid", uid)
             token = PasswordResetTokenGenerator().make_token(user)
-            print("Password reset token", token)
-            link = 'http://localhost:3000/api/user/reset/'+uid+'/'+token
-            print("Password Reset Link", link)
+            link = f'http://localhost:5173/api/user/reset/{uid}/{token}'
             # Send Email
-            body = 'Click Following Link to reset Your Password'+link
+            # Create a button with a link
+            reset_button = f'<a href="{link}" style="display:inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Reset Your Password</a>'
+
+            # Send Email
+            email_subject = 'Reset Your Password'
+            to_email = user.email
+
+            # Combine the button with the rest of the email content
+            body = f"""
+            <p>Hello,</p>
+            <p>Click the following button to reset your password:</p>
+            {reset_button}
+            <p>If you didn't request this password reset, please ignore this email.</p>
+            <p>Thank you!</p>
+            """
             data = {
                 'email_subject': 'Reset Your Password',
                 'body': body,
-                'to_email': user.email
+                'to_email': user.email,
+                'is_html': True  # Specify that the email body contains HTML
             }
             Util.send_email(data)
             return attrs

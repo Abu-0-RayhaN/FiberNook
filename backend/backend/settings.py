@@ -34,7 +34,6 @@ INSTALLED_APPS = [
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Add the origins of your frontend applications
-    "http://127.0.0.1:3000",
     "http://127.0.0.1:5173",
 ]
 MIDDLEWARE = [
