@@ -1,11 +1,13 @@
+//External imports
 import { Button, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+//imports from files
 import ChangePassword from "./Auth/ChangePassword";
 import { getToken, removeToken } from "../../services/LocalStorageService";
-import { useDispatch } from "react-redux";
 import { UnsetUserToken } from "../../features/authSlice";
 import { useGetLoggedUserQuery } from "../../services/userAuthApi";
-import { useEffect, useState } from "react";
 import { UnsetUserInfo, setUserInfo } from "../../features/userSlice";
 import { setTitle } from "../../features/titleSlice";
 const Dashboard = () => {

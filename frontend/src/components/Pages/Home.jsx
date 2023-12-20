@@ -4,10 +4,10 @@ const Home = () => {
   const dispatch = useDispatch();
   dispatch(setTitle("Geek Shop | Home"));
   return (
-    <div>
+    <div className="bg-green-900 rounded-md h-56">
       Home Page
       <hr />
-      <p>
+      <p className="bg-green-500 text-2xl mx-10">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
         beatae! Maxime pariatur reiciendis dolorem minima fuga, cum molestias,
         mollitia porro iste aut sit a? Saepe dolore incidunt nesciunt ullam
