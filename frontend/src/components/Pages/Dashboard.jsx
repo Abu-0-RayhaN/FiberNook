@@ -11,8 +11,7 @@ import { setTitle } from "../../features/titleSlice";
 const Dashboard = () => {
   //setting page title
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Dashboard"));
-
+  dispatch(setTitle("Geek Shop | Dashboard "));
   //navigation and fetching acccess token
   const navigate = useNavigate();
   const { access_token } = getToken();

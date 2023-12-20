@@ -9,6 +9,7 @@ class Util:
             subject=data['email_subject'],
             body=data['body'],
             from_email=os.environ.get('EMAIL_FROM'),
-            to=[data['to_email']]
+            to=[data['to_email']],
+            headers={'Content-Type': 'text/html'},
         )
         email.send()

@@ -110,12 +110,25 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
 
             # Combine the button with the rest of the email content
             body = f"""
-            <p>Hello,</p>
-            <p>Click the following button to reset your password:</p>
-            {reset_button}
-            <p>If you didn't request this password reset, please ignore this email.</p>
-            <p>Thank you!</p>
-            """
+                <html>
+                <head>
+                    <title>Reset Your Password</title>
+                </head>
+                <body>
+                    <p>Hello,</p>
+                    <p>Click the button below to reset your password:</p>
+                    <table style="width:100%; text-align:center;">
+                        <tr>
+                            <td>
+                                <a href="{link}" style="background-color: #4CAF50; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">Reset Your Password</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <p>If you didn't request this password reset, please ignore this email.</p>
+                    <p>Thank you!</p>
+                </body>
+                </html>
+                """
             data = {
                 'email_subject': 'Reset Your Password',
                 'body': body,
