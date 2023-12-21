@@ -5,7 +5,7 @@ const Home = () => {
   dispatch(setTitle("Geek Shop | Home"));
   return (
     <div className="">
-      Home Page
+      {/* Home Page */}
       <hr />
     </div>
   );
