@@ -1,6 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Pages/Layout";
-import Home from "./components/Pages/Home";
 import Contact from "./components/Pages/Contact";
 import LoginReg from "./components/Pages/Auth/LoginReg";
 import SendPasswordResetEmail from "./components/Pages/Auth/SendPasswordResetEmail";
@@ -8,6 +7,7 @@ import ResetPassword from "./components/Pages/Auth/ResetPassword";
 import Dashboard from "./components/Pages/Dashboard";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import Home from "./components/Pages/Home/Home";
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
   const title = useSelector((state) => state.title.title);
