@@ -1,14 +1,19 @@
 // import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 // import { getToken } from "../services/LocalStorageService";
 //    Icons Imports Starts
-import { FaSearch } from "react-icons/fa";
+import { FaBars, FaSearch, FaTimes } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 //   Icons Imports Ends
 import { NavLink } from "react-router-dom";
 import { logo } from "../assets/images";
+import { useState } from "react";
 const Navbar = () => {
   // const { access_token } = getToken();
+  const [MenuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!MenuOpen);
+  };
   const navItems = [
     { title: "Jewelry & Accessories", path: "/" },
     { title: "Clothing & Shoes", path: "/" },
@@ -26,33 +31,54 @@ const Navbar = () => {
             <FaSearch className="text-black w-5 h-5 cursor-pointer hidden md:block" />
           </div>
           <a href="/">
-            <img src={logo} alt="" />
+            <img src={logo} alt="Logo" />
           </a>
-          <div className="text-lg text-black sm:flex items-center gap-4 hidden">
-            <a href="/" className="flex items-center gap-2">
+          <div className="text-lg text-black flex items-center gap-4">
+            <a href="/" className="flex items-center gap-0 smd:gap-2">
               {" "}
-              <FaUser /> Accounts
+              <FaUser /> <span className="hidden md:flex">Accounts</span>
             </a>
             <a href="/" className="flex items-center gap-2">
               {" "}
-              <FaShoppingBag /> Shopping
+              <FaShoppingBag /> <span className="md:flex hidden">Shopping</span>
             </a>
           </div>
           {/* navbar for small device */}
-          {/* <div>
-            <button>
-              <FaBars />
+          <div className="md:hidden">
+            <button onClick={toggleMenu}>
+              {MenuOpen ? (
+                <FaTimes className="w-5 h-5 text-black" />
+              ) : (
+                <FaBars className="w-5 h-5 text-black" />
+              )}
             </button>
-          </div> */}
+          </div>
         </nav>
-        <hr />
 
         {/* Items Categories  */}
         <div className="pt-4">
-          <ul className="lg:flex items-center justify-between text-black hidden">
+          <ul className="md:flex items-center justify-between text-black hidden">
             {navItems.map(({ title, path }) => (
               <li key={title} className="hover:text-orange-500">
-                <NavLink to={`/${path}`}>{title}</NavLink>
+                <NavLink to={`${path}`}>{title}</NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Only mobile menu item  */}
+        <div className="pt-4">
+          <ul
+            className={`bg-black text-white px-4 py-2 rounded ${
+              MenuOpen ? "" : "hidden"
+            }`}
+          >
+            {navItems.map(({ title, path }) => (
+              <li
+                key={title}
+                className="hover:text-orange-500 my-3 cursor-pointer"
+              >
+                <NavLink to={`${path}`}>{title}</NavLink>
               </li>
             ))}
           </ul>
