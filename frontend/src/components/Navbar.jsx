@@ -36,22 +36,24 @@ const Navbar = () => {
           <div className="text-lg text-black flex items-center gap-4">
             <a href="/" className="flex items-center gap-0 smd:gap-2">
               {" "}
-              <FaUser /> <span className="hidden md:flex">Accounts</span>
+              <FaUser className="w-5 h5" />{" "}
+              <span className="hidden md:flex">Accounts</span>
             </a>
             <a href="/" className="flex items-center gap-2">
               {" "}
-              <FaShoppingBag /> <span className="md:flex hidden">Shopping</span>
+              <FaShoppingBag className="w-5 h-5" />{" "}
+              <span className="md:flex hidden">Shopping</span>
             </a>
-          </div>
-          {/* navbar for small device */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu}>
-              {MenuOpen ? (
-                <FaTimes className="w-5 h-5 text-black" />
-              ) : (
-                <FaBars className="w-5 h-5 text-black" />
-              )}
-            </button>
+            {/* navbar for small device */}
+            <div className="md:hidden">
+              <button onClick={toggleMenu}>
+                {MenuOpen ? (
+                  <FaTimes className="w-8 h-8 text-black mt-3" />
+                ) : (
+                  <FaBars className="w-8 h-8 text-black mt-3" />
+                )}
+              </button>
+            </div>
           </div>
         </nav>
 
