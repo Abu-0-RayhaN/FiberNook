@@ -1,16 +1,20 @@
 /* eslint-disable react/prop-types */
 
 const Cards = ({ product }) => {
-  const { id, title, category, price, image, status } = product;
+  const { id, title, category, price, image } = product;
 
   return (
-    <div className="card" key={id}>
+    <div
+      className="m-1 w-full hover:scale-105 transition-all duration-200"
+      key={id}
+    >
       <img src={image} alt={title} className="card-image" />
-      <div className="card-content">
-        <h3 className="card-title">{title}</h3>
-        <p className="card-category">{category}</p>
-        <p className="card-price">${price}</p>
-        <p className="card-status">{status}</p>
+      <div className="mx-2 mt-4 mb-2">
+        <h3 className="text-lg text-black">{title}</h3>
+        <div className="flex justify-between  mt-2">
+          <p className="text-gray-600">{category}</p>
+          <p className="text-gray-900 text-lg">${price}</p>
+        </div>
       </div>
     </div>
   );
