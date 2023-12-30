@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.title{
+    @apply text-3xl font-semibold capitalize text-center my-8
+}
