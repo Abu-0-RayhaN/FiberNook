@@ -2,6 +2,7 @@ import { setTitle } from "../../../features/titleSlice";
 import { useDispatch } from "react-redux";
 import Cover from "./Cover";
 import Brands from "./Brands";
+import HotCategory from "./HotCategory";
 const Home = () => {
   const dispatch = useDispatch();
   dispatch(setTitle("Geek Shop | Home"));
@@ -11,6 +12,7 @@ const Home = () => {
         <Cover />
       </div>
       <Brands />
+      <HotCategory />
     </div>
   );
 };
