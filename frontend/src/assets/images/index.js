@@ -14,6 +14,8 @@ import topProduct4 from "./topProduct4.png";
 import topProduct5 from "./topProduct5.png";
 import topProduct6 from "./topProduct6.png";
 import topProduct7 from "./topProduct7.png";
+import background from "./background.png";
+import zara from "./zara.png";
 export {
   pic1,
   logo,
@@ -31,4 +33,6 @@ export {
   topProduct5,
   topProduct6,
   topProduct7,
+  background,
+  zara,
 };
