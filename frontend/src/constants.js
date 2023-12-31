@@ -13,7 +13,7 @@ export const products = [
   {
     id: 1,
     title: "Adicolor Classics Joggers",
-    category: "Dress",
+    category: "clothing",
     price: 63.85,
     image: topProduct6,
     status: "Best Selers",
@@ -29,7 +29,7 @@ export const products = [
   {
     id: 3,
     title: "Geometric print Scarf",
-    category: "Dress",
+    category: "clothing",
     price: 53.0,
     image: topProduct4,
     status: "Best Selers",
@@ -37,7 +37,7 @@ export const products = [
   {
     id: 4,
     title: "Yellow Reserved Hoodie",
-    category: "Hoodies",
+    category: "hoodies",
     price: 63.85,
     image: topProduct5,
     status: "New Arriaval",
@@ -45,7 +45,7 @@ export const products = [
   {
     id: 5,
     title: "Basic Dress Green",
-    category: "Dress",
+    category: "clothing",
     price: 236.0,
     image: topProduct,
     status: "New Arriaval",
@@ -53,7 +53,7 @@ export const products = [
   {
     id: 6,
     title: "Nike Air Zoom Pegasus",
-    category: "Shoe",
+    category: "bags",
     price: 198.0,
     image: topProduct2,
     status: "Best Selers",
@@ -61,7 +61,7 @@ export const products = [
   {
     id: 7,
     title: "Nike Repel Miler",
-    category: "Hoodies",
+    category: "hoodies",
     price: 120.5,
     image: topProduct3,
     status: "Best Selers",

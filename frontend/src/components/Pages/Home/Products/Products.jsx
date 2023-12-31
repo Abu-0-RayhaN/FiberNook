@@ -3,19 +3,19 @@ import { products as initialProducts } from "../../../../constants";
 import Cards from "./Cards";
 import { useState } from "react";
 const Products = () => {
-  const [products, setProducts] = useState(initialProducts);
+  const [selectedCategory, setSelectedCategory] = useState("all products");
 
-  // Function to filter products based on category
-  const filterProducts = (category) => {
-    if (category === "All products") {
-      setProducts(initialProducts);
-    } else {
-      const filteredProducts = initialProducts.filter(
-        (product) => product.category === category
-      );
-      setProducts(filteredProducts);
-    }
+  // Derive filtered products based on the selected category
+  const filteredProducts =
+    selectedCategory === "all products"
+      ? initialProducts
+      : initialProducts.filter((item) => item.category === selectedCategory);
+
+  // Function to update the selected category
+  const setCategory = (category) => {
+    setSelectedCategory(category);
   };
+
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
       <h2 className="title">Or Subscribe to the newsletter</h2>
@@ -23,12 +23,12 @@ const Products = () => {
       {/* Category List  */}
       <div className="flex md:flex-row flex-col justify-between mt-12 gap-5 md:gap-0 items-center">
         <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap">
-          <button onClick={() => filterProducts("All products")}>
+          <button onClick={() => setCategory("all products")}>
             All products
           </button>
-          <button onClick={() => filterProducts("Clothing")}>Clothing</button>
-          <button onClick={() => filterProducts("Hodies")}>Hodies</button>
-          <button onClick={() => filterProducts("Bags")}>Bags</button>
+          <button onClick={() => setCategory("clothing")}>Clothing</button>
+          <button onClick={() => setCategory("hoodies")}>Hodies</button>
+          <button onClick={() => setCategory("bags")}>Bags</button>
         </div>
 
         {/* Sorting Option  */}
@@ -47,7 +47,7 @@ const Products = () => {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Cards key={product.id} product={product} />
         ))}
       </div>
