@@ -44,7 +44,7 @@ const Products = () => {
             All products
           </button>
           <button onClick={() => setCategory("clothing")}>Clothing</button>
-          <button onClick={() => setCategory("hoodies")}>Hodies</button>
+          <button onClick={() => setCategory("hoodies")}>Hoodies</button>
           <button onClick={() => setCategory("bags")}>Bags</button>
         </div>
 

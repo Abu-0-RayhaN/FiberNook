@@ -72,7 +72,7 @@ export const products = [
     category: "hoodies",
     price: 120.5,
     image: topProduct3,
-    status: "Best Selers",
+    status: "Favourite",
   },
   {
     id: 9,
@@ -80,7 +80,7 @@ export const products = [
     category: "hoodies",
     price: 120.5,
     image: topProduct3,
-    status: "Best Selers",
+    status: "Favourite",
   },
   {
     id: 10,
@@ -88,5 +88,6 @@ export const products = [
     category: "Glasses",
     price: 160.0,
     image: topProduct7,
+    status: "Best Selers",
   },
 ];
