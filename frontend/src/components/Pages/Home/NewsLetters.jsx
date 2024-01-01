@@ -26,7 +26,7 @@ const NewsLetters = () => {
             </Link>
           ))}
         </div>
-        <div className="flex flex-col mt-3 gap-10 justify-center items-center">
+        <div className="flex flex-col mt-3 md:gap-10 justify-center items-center gap-5">
           <p className="title">Or Subscribe to the newsletter</p>
           <div className="flex flex-col w-full md:flex-row gap-5 md:w-[40%]">
             <input
