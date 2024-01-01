@@ -8,6 +8,7 @@ import Dashboard from "./components/Pages/Dashboard";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Home from "./components/Pages/Home/Home";
+import SingleProduct from "./components/Pages/Home/Products/SingleProduct";
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
   const title = useSelector((state) => state.title.title);
@@ -40,7 +41,15 @@ const App = () => {
               path="/dashboard"
               element={access_token ? <Dashboard /> : <Navigate to="/login" />}
             />
-            <Route path="*" element={<h1>Error 404 Page not found!!</h1>} />
+            <Route path="/shop/:id" element={<SingleProduct />} />
+            <Route
+              path="*"
+              element={
+                <h1 className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
+                  Error 404 Page not found!!
+                </h1>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
