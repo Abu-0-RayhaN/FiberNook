@@ -6,6 +6,7 @@ import HotCategory from "./HotCategory";
 import Products from "./Products/Products";
 import Collection from "./Collection";
 import BestSeller from "./BestSeller";
+import NewsLetters from "./NewsLetters";
 const Home = () => {
   const dispatch = useDispatch();
   dispatch(setTitle("Geek Shop | Home"));
@@ -19,6 +20,7 @@ const Home = () => {
       <Products />
       <Collection />
       <BestSeller />
+      <NewsLetters />
     </div>
   );
 };

@@ -16,6 +16,12 @@ import topProduct6 from "./topProduct6.png";
 import topProduct7 from "./topProduct7.png";
 import background from "./background.png";
 import zara from "./zara.png";
+import card from "./card.png";
+import card1 from "./card1.png";
+import card2 from "./card2.png";
+import card3 from "./card3.png";
+import card4 from "./card4.png";
+import card5 from "./card5.png";
 export {
   pic1,
   logo,
@@ -35,4 +41,10 @@ export {
   topProduct7,
   background,
   zara,
+  card,
+  card1,
+  card2,
+  card3,
+  card4,
+  card5,
 };
