@@ -1,5 +1,5 @@
 //External imports
-import { Button, Grid, Typography } from "@mui/material";
+// import { Button, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -11,8 +11,19 @@ import { useGetLoggedUserQuery } from "../../services/userAuthApi";
 import { UnsetUserInfo, setUserInfo } from "../../features/userSlice";
 import { setTitle } from "../../features/titleSlice";
 const Dashboard = () => {
-  //setting page title
   const dispatch = useDispatch();
+  // change password
+  const [showChangePassword, setShowChangePassword] = useState(false);
+  const toggleChangePassword = () => {
+    setShowChangePassword(!showChangePassword);
+  };
+  // Set the title explicitly
+  useEffect(() => {
+    dispatch(setTitle("Geek Shop | Dashboard"));
+    document.title = "Geek Shop | Dashboard";
+  }, [dispatch]);
+
+  //setting page title
   dispatch(setTitle("Geek Shop | Dashboard "));
   //navigation and fetching acccess token
   const navigate = useNavigate();
@@ -47,39 +58,59 @@ const Dashboard = () => {
 
   // logout| unsetting redux store data and localstorage
   const handleLogout = () => {
-    dispatch(UnsetUserToken({ access_token: null }));
-    dispatch(UnsetUserInfo({ name: "", email: "" }));
-    removeToken();
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+
+    if (confirmLogout) {
+      dispatch(UnsetUserToken({ access_token: null }));
+      dispatch(UnsetUserInfo({ name: "", email: "" }));
+      removeToken();
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
   };
+
   return (
-    <>
-      <Grid container>
-        <Grid
-          item
-          sm={4}
-          sx={{ backgroundColor: "gray", p: 5, color: "white" }}
-        >
-          <h1>DashBoard</h1>
-          <Typography variant="h5">Email:{userData.email}</Typography>
-          <Typography variant="h6">Name:{userData.name}</Typography>
-          <Button
-            variant="contained"
-            color="warning"
-            size="large"
+    <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
+      <div className="flex flex-col md:flex-row">
+        <div className="bg-gray-800 text-white p-8 md:w-1/4 w-full">
+          <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
+          <p className="text-lg">Email: {userData.email}</p>
+          <p className="text-lg">Name: {userData.name}</p>
+          <button
+            className="mt-8 bg-yellow-500 text-white px-8 py-3 rounded-full"
             onClick={handleLogout}
-            sx={{ mt: 8 }}
           >
             Logout
-          </Button>
-        </Grid>
-        <Grid item sm={8}>
-          <ChangePassword />
-        </Grid>
-      </Grid>
-    </>
+          </button>
+          <button
+            className="mt-8 bg-blue-500 text-white px-8 py-3 rounded-full"
+            onClick={toggleChangePassword}
+          >
+            Change Password
+          </button>
+        </div>
+        <div className="flex flex-col md:w-3/4 w-full">
+          <div className="bg-white p-4 rounded-md shadow-md">
+            <h2 className="text-2xl font-bold mb-4">Your Orders</h2>
+            {/* Add your orders list content here */}
+          </div>
+          <div
+            className={`flex-grow p-8 md:pl-8 transition-opacity duration-300 ease-in-out ${
+              showChangePassword ? "opacity-100 mt-8" : "opacity-0 mt-0"
+            }`}
+          >
+            {showChangePassword && (
+              <div
+                className={`mt-8 transition-opacity duration-300 ease-in-out opacity-100`}
+              >
+                <ChangePassword />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

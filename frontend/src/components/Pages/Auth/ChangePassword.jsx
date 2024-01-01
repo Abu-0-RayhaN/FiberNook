@@ -10,7 +10,7 @@ import { setTitle } from "../../../features/titleSlice";
 const ChangePassword = () => {
   //setting page title
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Sign Up"));
+  dispatch(setTitle("Geek Shop | Change Password"));
   const navigate = useNavigate();
   const [server_error, setServerError] = useState({});
   const [changeUserPassword, { isLoading }] = useChangeUserPasswordMutation();
@@ -119,7 +119,7 @@ const ChangePassword = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2, px: 5 }}
               >
-                Change Password
+                SUBMIT
               </Button>
             )}
           </Box>

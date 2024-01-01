@@ -34,11 +34,14 @@ const Navbar = () => {
             <img src={logo} alt="Logo" />
           </a>
           <div className="text-lg text-black flex items-center gap-4">
-            <a href="/" className="flex items-center gap-0 smd:gap-2">
+            <NavLink
+              to={"/dashboard"}
+              className="flex items-center gap-0 smd:gap-2"
+            >
               {" "}
               <FaUser className="w-5 h5" />{" "}
               <span className="hidden md:flex">Accounts</span>
-            </a>
+            </NavLink>
             <a href="/" className="flex items-center gap-2">
               {" "}
               <FaShoppingBag className="w-5 h-5" />{" "}
