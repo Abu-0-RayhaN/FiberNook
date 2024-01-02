@@ -8,12 +8,13 @@ import Dashboard from "./components/Pages/Dashboard";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Home from "./components/Pages/Home/Home";
-import SingleProduct from "./components/Pages/Home/Products/SingleProduct";
+import SingleProduct from "./components/Pages/Products/SingleProduct";
+import ProductList from "./components/Pages/Products/ProductList";
+
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
   const title = useSelector((state) => state.title.title);
   useEffect(() => {
-    // Set the document title dynamically
     document.title = title;
   }, [title]);
   return (
@@ -41,7 +42,9 @@ const App = () => {
               path="/dashboard"
               element={access_token ? <Dashboard /> : <Navigate to="/login" />}
             />
-            <Route path="/shop/:id" element={<SingleProduct />} />
+            <Route path="shop/:id" element={<SingleProduct />} />
+            <Route path="shop" element={<ProductList />} />
+
             <Route
               path="*"
               element={

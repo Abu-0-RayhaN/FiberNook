@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
-import { products } from "../../../../constants";
 import { FaArrowAltCircleRight } from "react-icons/fa";
-
+import { products } from "../../../constants";
 const SingleProduct = () => {
   const { id } = useParams();
   const product = products.find((item) => item.id === parseInt(id, 10));

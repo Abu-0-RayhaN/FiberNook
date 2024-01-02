@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { products } from "../../../constants";
-import Cards from "./Products/Cards";
+import Cards from "../Products/Cards";
 const BestSeller = () => {
   const bestSeller = products.filter((item) => item.status === "Best Selers");
 

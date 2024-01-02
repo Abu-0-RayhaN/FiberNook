@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import Cover from "./Cover";
 import Brands from "./Brands";
 import HotCategory from "./HotCategory";
-import Products from "./Products/Products";
+import Products from "../Products/HomeProducts";
+
 import Collection from "./Collection";
 import BestSeller from "./BestSeller";
 import NewsLetters from "./NewsLetters";
