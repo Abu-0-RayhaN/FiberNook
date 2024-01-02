@@ -1,5 +1,6 @@
 import { FaShoppingBag } from "react-icons/fa";
 import { cover } from "../../../assets/images";
+import { Link } from "react-router-dom";
 const Cover = () => {
   return (
     <div className="py-12 xl:px-28 px-4 ">
@@ -10,10 +11,13 @@ const Cover = () => {
             you can explore and shop many different collection from various
             brands here.
           </p>
-          <button className="bg-gray-900 hover:bg-orange-500 px6 py-2 text-white font-semibold rounded-md p-5 inline-flex items-center gap-2">
+          <Link
+            to={`/shop`}
+            className="bg-gray-900 hover:bg-orange-500 px6 py-2 text-white font-semibold rounded-md p-5 inline-flex items-center gap-2"
+          >
             <FaShoppingBag />
             Shop Now
-          </button>
+          </Link>
         </div>
         <div className="md:w-1/2">
           <img src={cover} alt="Cover Image" className="h-92" />

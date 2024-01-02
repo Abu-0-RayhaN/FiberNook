@@ -1,11 +1,11 @@
-// import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 // import { getToken } from "../services/LocalStorageService";
 //    Icons Imports Starts
-import { FaBars, FaSearch, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { AiFillShop } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 //   Icons Imports Ends
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logo } from "../assets/images";
 import { useState } from "react";
 const Navbar = () => {
@@ -28,7 +28,9 @@ const Navbar = () => {
       <header className="max-w-screen-2xl xl:px-28 px-4 ">
         <nav className="container flex justify-between items-center mx-auto pt-6 pb-3">
           <div>
-            <FaSearch className="text-black w-5 h-5 cursor-pointer hidden md:block" />
+            <Link to={`/shop`}>
+              <AiFillShop className="text-black w-5 h-5 cursor-pointer hidden md:block" />
+            </Link>
           </div>
           <a href="/">
             <img src={logo} alt="Logo" />
