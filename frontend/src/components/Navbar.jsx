@@ -1,26 +1,39 @@
-// import { getToken } from "../services/LocalStorageService";
 //    Icons Imports Starts
-import { FaBars, FaTimes } from "react-icons/fa";
-import { AiFillShop } from "react-icons/ai";
+import { FaBars, FaShoppingCart, FaTimes, FaUserCheck } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 //   Icons Imports Ends
+import { getToken } from "../services/LocalStorageService";
 import { Link, NavLink } from "react-router-dom";
-import { logo } from "../assets/images";
 import { useState } from "react";
+import Cart from "./Pages/Cart";
+
 const Navbar = () => {
-  // const { access_token } = getToken();
+  const { access_token } = getToken();
   const [MenuOpen, setMenuOpen] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const cartItems = [
+    { id: 1, name: "Product 1", price: 19.99, quantity: 2 },
+    { id: 2, name: "Product 2", price: 29.99, quantity: 1 },
+    { id: 3, name: "Product 3", price: 9.99, quantity: 3 },
+  ];
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    toggleCart();
+  };
   const toggleMenu = () => {
     setMenuOpen(!MenuOpen);
   };
   const navItems = [
-    { title: "Jewelry & Accessories", path: "/" },
-    { title: "Clothing & Shoes", path: "/" },
-    { title: "Wedding & Party", path: "/" },
-    { title: "Home & Living", path: "/" },
-    { title: "Toy & Entertainment", path: "/" },
-    { title: "Art & Collectibles", path: "/" },
+    { title: "Jewelry & Accessories", path: "/shop" },
+    { title: "Clothing & Shoes", path: "/shop" },
+    { title: "Wedding & Party", path: "/shop" },
+    { title: "Home & Living", path: "/shop" },
+    { title: "Toy & Entertainment", path: "/shop" },
+    { title: "Art & Collectibles", path: "/shop" },
   ];
 
   return (
@@ -29,26 +42,47 @@ const Navbar = () => {
         <nav className="container flex justify-between items-center mx-auto pt-6 pb-3">
           <div>
             <Link to={`/shop`}>
-              <AiFillShop className="text-black w-5 h-5 cursor-pointer hidden md:block" />
+              <FaShoppingCart className="text-black w-5 h-5 cursor-pointer hidden md:block" />
             </Link>
           </div>
           <a href="/">
-            <img src={logo} alt="Logo" />
+            <span className="font-bold text-3xl">
+              <span className="text-blue-500">F</span>
+              <span className="text-yellow-500">i</span>
+              <span className="text-green-500">b</span>
+              <span className="text-red-500">e</span>
+              <span className="text-purple-500">r</span>
+              <span className="text-orange-500">N</span>
+              <span className="text-pink-500">o</span>
+              <span className="text-indigo-500">o</span>
+              <span className="text-khaki-500">k</span>
+            </span>
           </a>
           <div className="text-lg text-black flex items-center gap-4">
             <NavLink
               to={"/dashboard"}
-              className="flex items-center gap-0 smd:gap-2"
+              className="flex items-center gap-0 smd:gap-2 hover:text-red-500"
             >
               {" "}
-              <FaUser className="w-5 h5" />{" "}
-              <span className="hidden md:flex">Accounts</span>
+              {access_token ? (
+                <FaUserCheck className="w-5 h5" />
+              ) : (
+                <FaUser className="w-5 h5" />
+              )}
+              {access_token ? (
+                <span className="pl-2 hidden md:flex">Dashboard</span>
+              ) : (
+                <span className="pl-2 hidden md:flex">Login</span>
+              )}
             </NavLink>
-            <a href="/" className="flex items-center gap-2">
-              {" "}
-              <FaShoppingBag className="w-5 h-5" />{" "}
-              <span className="md:flex hidden">Shopping</span>
-            </a>
+            <NavLink
+              to="/cart"
+              className="flex items-center gap-2 hover:text-red-500"
+              onClick={handleCartClick}
+            >
+              <FaShoppingBag className="w-5 h-5" />
+              <span className="md:flex hidden">Cart</span>
+            </NavLink>
             {/* navbar for small device */}
             <div className="md:hidden">
               <button onClick={toggleMenu}>
@@ -89,6 +123,12 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+          <Cart
+            isOpen={showCart}
+            onClose={toggleCart}
+            isLoggedIn={!!access_token}
+            cartItems={cartItems}
+          />
         </div>
       </header>
     </>

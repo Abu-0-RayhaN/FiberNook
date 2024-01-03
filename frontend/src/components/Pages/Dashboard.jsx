@@ -94,6 +94,7 @@ const Dashboard = () => {
           <div className="bg-white p-4 rounded-md shadow-md">
             <h2 className="text-2xl font-bold mb-4">Your Orders</h2>
             {/* Add your orders list content here */}
+            <p className="text-red-500 text-center">You have no orders.</p>
           </div>
           <div
             className={`flex-grow p-8 md:pl-8 transition-opacity duration-300 ease-in-out ${

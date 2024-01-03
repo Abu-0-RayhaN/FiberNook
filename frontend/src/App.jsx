@@ -10,7 +10,6 @@ import { useEffect } from "react";
 import Home from "./components/Pages/Home/Home";
 import SingleProduct from "./components/Pages/Products/SingleProduct";
 import ProductList from "./components/Pages/Products/ProductList";
-
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
   const title = useSelector((state) => state.title.title);

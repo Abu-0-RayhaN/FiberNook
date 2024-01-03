@@ -1,5 +1,5 @@
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { logo } from "../../assets/images";
+// import { logo } from "../../assets/images";
 
 const Footer = () => {
   return (
@@ -8,7 +8,17 @@ const Footer = () => {
         <div className="flex md:flex-row flex-col justify-center items-center text-center md:text-start">
           <div className="flex flex-col md:w-2/5 w-full gap-5 text-center md:text-start">
             <div className="flex justify-center md:justify-start">
-              <img src={logo} alt="" className="text-center" />
+              <span className="font-bold text-3xl">
+                <span className="text-blue-500">F</span>
+                <span className="text-yellow-500">i</span>
+                <span className="text-green-500">b</span>
+                <span className="text-red-500">e</span>
+                <span className="text-purple-500">r</span>
+                <span className="text-orange-500">N</span>
+                <span className="text-pink-500">o</span>
+                <span className="text-indigo-500">o</span>
+                <span className="text-khaki-500">k</span>
+              </span>
             </div>
             <p className="md:mr-20 text-gray-600">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.

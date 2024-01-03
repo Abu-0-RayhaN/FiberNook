@@ -2,12 +2,15 @@ import { FaFilter } from "react-icons/fa";
 import { products as initialProducts } from "../../../constants";
 import Cards from "./Cards";
 import { useMemo, useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../features/titleSlice";
 const ProductList = () => {
   const [selectedCategory, setSelectedCategory] = useState("all products");
   const [sortingOption, setSortingOption] = useState("all");
   const [searchInput, setSearchInput] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const dispatch = useDispatch();
+  dispatch(setTitle("Geek Shop | Shop"));
 
   //   functionality for sorting filtering searching
   useMemo(() => {
