@@ -19,8 +19,7 @@ const Dashboard = () => {
   };
   // Set the title explicitly
   useEffect(() => {
-    dispatch(setTitle("Geek Shop | Dashboard"));
-    document.title = "Geek Shop | Dashboard";
+    dispatch(setTitle("FiberNook| Dashboard"));
   }, [dispatch]);
 
   //setting page title

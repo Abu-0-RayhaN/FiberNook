@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { setTitle } from "../../../features/titleSlice";
 const ResetPassword = () => {
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Reset Password"));
+  dispatch(setTitle("FiberNook | Reset Password"));
   const [server_error, setServerError] = useState({});
   const [server_msg, setServerMsg] = useState({});
   const [resetPassword, { isLoading }] = useResetPasswordMutation();

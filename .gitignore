@@ -4,6 +4,8 @@ backend/posts/api/__pycache__
 backend/backend/api/__pycache__
 backend/authentication/__pycache__
 backend/authentication/migrations/
+backend/shop/migrations/
+backend/product_images/
 backend/posts/migrations
 venv
 .env

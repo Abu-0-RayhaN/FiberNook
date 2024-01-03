@@ -15,7 +15,7 @@ import { setTitle } from "../../../features/titleSlice";
 const Registration = () => {
   //setting page title
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Sign Up"));
+  dispatch(setTitle("FiberNook | Sign Up"));
 
   const [server_error, setServerError] = useState({});
   const navigate = useNavigate();

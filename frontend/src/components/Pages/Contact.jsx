@@ -4,7 +4,7 @@ import { setTitle } from "../../features/titleSlice";
 const Contact = () => {
   //setting page title
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Contact Us"));
+  dispatch(setTitle("FiberNook| Contact Us"));
   return (
     <div>
       Contact Page <hr />

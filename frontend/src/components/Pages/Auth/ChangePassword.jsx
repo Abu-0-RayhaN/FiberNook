@@ -10,7 +10,7 @@ import { setTitle } from "../../../features/titleSlice";
 const ChangePassword = () => {
   //setting page title
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Change Password"));
+  dispatch(setTitle("FiberNook | Change Password"));
   const navigate = useNavigate();
   const [server_error, setServerError] = useState({});
   const [changeUserPassword, { isLoading }] = useChangeUserPasswordMutation();

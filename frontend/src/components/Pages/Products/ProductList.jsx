@@ -10,7 +10,7 @@ const ProductList = () => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Shop"));
+  dispatch(setTitle("FiberNook | Shop"));
 
   //   functionality for sorting filtering searching
   useMemo(() => {

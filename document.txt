@@ -1,3 +1,4 @@
 i'm using django-cors-headers because in browsers website cannot ask for things from another domain. but here i am using seperate frontend and backend that is why i need to use this to be able to access data from another domain.(Cross Origin Resource Sharing)
 
 I'm trying to fetch all products intially when user goes to shop then i show them products based on their search,sort from client side
+i'm not uploading images from backend but remember to do that nor will not be able to show sample products

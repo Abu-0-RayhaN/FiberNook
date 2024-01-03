@@ -10,7 +10,7 @@ import BestSeller from "./BestSeller";
 import NewsLetters from "./NewsLetters";
 const Home = () => {
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Home"));
+  dispatch(setTitle("FiberNook | Home"));
   return (
     <div className="">
       <div className="bg-gray-300">

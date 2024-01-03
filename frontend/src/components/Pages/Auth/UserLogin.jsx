@@ -9,7 +9,7 @@ import { setTitle } from "../../../features/titleSlice";
 const UserLogin = () => {
   //setting page title
   const dispatch = useDispatch();
-  dispatch(setTitle("Geek Shop | Sign In"));
+  dispatch(setTitle("FiberNook| Sign In"));
   const [server_error, setServerError] = useState({});
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const navigate = useNavigate();

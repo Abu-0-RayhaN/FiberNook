@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'authentication',
+    'shop',
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Add the origins of your frontend applications
