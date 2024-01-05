@@ -167,4 +167,4 @@ EMAIL_USE_TLS = True
 
 # Password reset token expiration time
 
-PASSWORD_RESET_TIMEOUT = 600
+PASSWORD_RESET_TIMEOUT = 3600
