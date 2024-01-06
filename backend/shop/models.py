@@ -2,6 +2,13 @@ from django.db import models
 from authentication.models import User
 
 
+class Size(models.Model):
+    name = models.CharField(max_length=5, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -12,6 +19,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+    sizes = models.ManyToManyField(Size, blank=True)
 
     def __str__(self):
         return self.title
