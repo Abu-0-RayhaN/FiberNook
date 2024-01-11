@@ -1,5 +1,5 @@
 import { useProductsListQuery } from "../../../services/shopApi";
-
+import Cards from "./Cards";
 const ProductLi = () => {
   const { data: products, error, isLoading } = useProductsListQuery();
 
@@ -14,41 +14,14 @@ const ProductLi = () => {
   return (
     <div>
       <h2>Product List</h2>
-      <ul>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
         {products.map((product) => (
-          <li key={product.id}>
-            <h3>{product.title}</h3>
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
-            <p>Category: {product.category}</p>
-            <img src={product.image} alt={product.title} />
-            <p>{product.is_active ? "Active" : "Inactive"}</p>
-            <p>Stock: {product.stock}</p>
-            <p className="p-3 mx-5">Sizes: {renderSizes(product.sizes)}</p>
-          </li>
+          <Cards key={product.id} product={product} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-const renderSizes = (sizes) => {
-  return sizes.map((sizeId) => (
-    <span key={sizeId} className="px-3">
-      {getSizeName(sizeId)}
-    </span>
-  ));
-};
-
-const getSizeName = (sizeId) => {
-  const sizeNames = {
-    1: "S",
-    2: "M",
-    3: "L",
-    4: "XL",
-    5: "XXL",
-  };
-
-  return sizeNames[sizeId] || "Unknown Size";
-};
 export default ProductLi;

@@ -1,23 +1,25 @@
 import { FaFilter } from "react-icons/fa";
-import { products as initialProducts } from "../../../constants";
+// import { products as initialProducts } from "../../../constants";
 import Cards from "./Cards";
 import { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setTitle } from "../../../features/titleSlice";
+import { useProductsListQuery } from "../../../services/shopApi";
 const ProductList = () => {
   const [selectedCategory, setSelectedCategory] = useState("all products");
   const [sortingOption, setSortingOption] = useState("all");
   const [searchInput, setSearchInput] = useState("");
+  const { data: products, error, isLoading } = useProductsListQuery();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const dispatch = useDispatch();
   dispatch(setTitle("FiberNook | Shop"));
 
-  //   functionality for sorting filtering searching
+  // functionality for sorting filtering searching
   useMemo(() => {
-    let categoryFiltered = initialProducts;
+    let categoryFiltered = products || [];
 
     if (selectedCategory !== "all products") {
-      categoryFiltered = initialProducts.filter(
+      categoryFiltered = products.filter(
         (item) => item.category === selectedCategory
       );
     }
@@ -46,7 +48,7 @@ const ProductList = () => {
       default:
         setFilteredProducts(searchFiltered);
     }
-  }, [selectedCategory, sortingOption, searchInput]);
+  }, [selectedCategory, sortingOption, searchInput, products]);
 
   const setCategory = (category) => {
     setSelectedCategory(category);
@@ -75,9 +77,14 @@ const ProductList = () => {
           <button onClick={() => setCategory("all products")}>
             All products
           </button>
-          <button onClick={() => setCategory("clothing")}>Clothing</button>
-          <button onClick={() => setCategory("hoodies")}>Hoodies</button>
-          <button onClick={() => setCategory("bags")}>Bags</button>
+          {/* Assuming categories are available in the data */}
+          {Array.from(
+            new Set((products || []).map((item) => item.category))
+          ).map((category) => (
+            <button key={category} onClick={() => setCategory(category)}>
+              {category}
+            </button>
+          ))}
         </div>
 
         {/* Sorting Option */}
@@ -99,7 +106,11 @@ const ProductList = () => {
         </div>
       </div>
 
-      {filteredProducts.length > 0 ? (
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error fetching data: {error.message}</p>
+      ) : filteredProducts.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
           {filteredProducts.map((product) => (
             <Cards key={product.id} product={product} />
