@@ -2,3 +2,7 @@ i'm using django-cors-headers because in browsers website cannot ask for things 
 
 I'm trying to fetch all products intially when user goes to shop then i show them products based on their search,sort from client side
 i'm not uploading images from backend but remember to do that nor will not be able to show sample products
+
+
+
+Just copy paste the Products List code to HomeProducts except search option
