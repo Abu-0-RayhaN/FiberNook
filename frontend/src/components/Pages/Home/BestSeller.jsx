@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { products } from "../../../constants";
-import Cards from "../Products/Cards";
+import ConstCard from "../Products/ConstCard";
 const BestSeller = () => {
   const bestSeller = products.filter((item) => item.status === "Best Selers");
 
@@ -56,7 +56,7 @@ const BestSeller = () => {
         >
           {bestSeller.slice(0, 8).map((product) => (
             <SwiperSlide key={product.id}>
-              <Cards key={product.id} product={product} />
+              <ConstCard key={product.id} product={product} />
             </SwiperSlide>
           ))}
         </Swiper>

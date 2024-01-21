@@ -1,7 +1,7 @@
 import { FaFilter } from "react-icons/fa";
 import { products as initialProducts } from "../../../constants";
-import Cards from "./Cards";
 import { useMemo, useState } from "react";
+import ConstCard from "./ConstCard";
 const HomeProducts = () => {
   const [selectedCategory, setSelectedCategory] = useState("all products");
   const [sortingOption, setSortingOption] = useState("filter");
@@ -69,7 +69,7 @@ const HomeProducts = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
         {filteredProducts.slice(0, 8).map((product) => (
-          <Cards key={product.id} product={product} />
+          <ConstCard key={product.id} product={product} />
         ))}
       </div>
     </div>
