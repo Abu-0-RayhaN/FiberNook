@@ -36,7 +36,13 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    total_sum = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     date_added = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+        # Calculate total_sum before saving
+        self.total_sum = self.quantity * self.product.price
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return self.user
+        return f"{self.user} - {self.product} - {self.quantity} - {self.total_sum}"
