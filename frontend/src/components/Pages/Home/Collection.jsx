@@ -1,5 +1,5 @@
 import { background, zara } from "../../../assets/images";
-
+import { Link } from "react-router-dom";
 const Collection = () => {
   return (
     <div
@@ -16,7 +16,7 @@ const Collection = () => {
             Angeles.
           </p>
           <button className="px-6 py-2 bg-white rounded-sm text-black text-lg inline-block">
-            See Collection
+            <Link to={`/shop`}>See Collections</Link>
           </button>
         </div>
       </div>

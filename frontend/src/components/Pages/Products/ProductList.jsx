@@ -1,7 +1,7 @@
 import { FaFilter } from "react-icons/fa";
 // import { products as initialProducts } from "../../../constants";
 import Cards from "./Cards";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setTitle } from "../../../features/titleSlice";
 import { useProductsListQuery } from "../../../services/shopApi";
@@ -57,7 +57,9 @@ const ProductList = () => {
   const setSortOption = (option) => {
     setSortingOption(option);
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
       {/* Search Bar Div at the Top */}

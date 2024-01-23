@@ -22,8 +22,6 @@ const Dashboard = () => {
     dispatch(setTitle("FiberNook| Dashboard"));
   }, [dispatch]);
 
-  //setting page title
-  dispatch(setTitle("Geek Shop | Dashboard "));
   //navigation and fetching acccess token
   const navigate = useNavigate();
   const { access_token } = getToken();
