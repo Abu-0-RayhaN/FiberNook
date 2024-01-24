@@ -12,7 +12,6 @@ import { UnsetUserInfo, setUserInfo } from "../../features/userSlice";
 import { setTitle } from "../../features/titleSlice";
 const Dashboard = () => {
   const dispatch = useDispatch();
-  // change password
   const [showChangePassword, setShowChangePassword] = useState(false);
   const toggleChangePassword = () => {
     setShowChangePassword(!showChangePassword);

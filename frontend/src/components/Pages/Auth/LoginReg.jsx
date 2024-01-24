@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Box, Card, Grid, Tabs, Tab } from "@mui/material";
 import { pic1 } from "../../../assets/images";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserLogin from "./UserLogin";
 import Registration from "./Registration";
 const TabPanel = (props) => {
@@ -17,6 +17,11 @@ const LoginReg = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  //initial scrollto top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   return (
     <>
       <Grid container sx={{ marginBottom: "10px" }}>

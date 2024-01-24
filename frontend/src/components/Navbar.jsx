@@ -128,6 +128,7 @@ const Navbar = () => {
             onClose={toggleCart}
             isLoggedIn={!!access_token}
             cartItems={cartItems}
+            setIsOpen={setShowCart}
           />
         </div>
       </header>

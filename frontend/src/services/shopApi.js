@@ -10,10 +10,16 @@ export const shopApi = createApi({
       query: () => `shop/products/`,
     }),
     createCart: builder.mutation({
-      query: () => ({
-        url: "shop/cart/",
-        method: "POST",
-      }),
+      query: ({ access_token, data }) => {
+        return {
+          url: "shop/cart/",
+          method: "POST",
+          body: data,
+          headers: {
+            authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
     }),
   }),
 });

@@ -2,8 +2,8 @@
 
 import { FaCaretSquareRight, FaTrash } from "react-icons/fa";
 import { useEffect } from "react";
-
-const Cart = ({ isOpen, onClose, isLoggedIn, cartItems }) => {
+import { Link } from "react-router-dom";
+const Cart = ({ isOpen, onClose, isLoggedIn, cartItems, setIsOpen }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"; // Disable scrolling when the cart is open
@@ -93,9 +93,13 @@ const Cart = ({ isOpen, onClose, isLoggedIn, cartItems }) => {
                 ) : (
                   <div>
                     Please log in to view your cart.
-                    <a href="/login" className="text-blue-500">
+                    <Link
+                      to={"/login"}
+                      className="text-blue-500"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
                       Login
-                    </a>
+                    </Link>
                   </div>
                 )}
               </p>
