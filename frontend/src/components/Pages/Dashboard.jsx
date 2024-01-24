@@ -19,7 +19,7 @@ const Dashboard = () => {
   };
   // Set the title explicitly
   useEffect(() => {
-    dispatch(setTitle("FiberNook| Dashboard"));
+    dispatch(setTitle("FiberNook | Dashboard"));
   }, [dispatch]);
 
   //navigation and fetching acccess token

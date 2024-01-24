@@ -6,7 +6,7 @@ export const userAuthApi = createApi({
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (user) => ({
-        url: "register/",
+        url: "user/register/",
         method: "POST",
         body: user,
         headers: {
@@ -16,7 +16,7 @@ export const userAuthApi = createApi({
     }),
     loginUser: builder.mutation({
       query: (user) => ({
-        url: "login/",
+        url: "user/login/",
         method: "POST",
         body: user,
         headers: {
@@ -27,7 +27,7 @@ export const userAuthApi = createApi({
     changeUserPassword: builder.mutation({
       query: ({ actualData, access_token }) => {
         return {
-          url: "changepassword/",
+          url: "user/changepassword/",
           method: "POST",
           body: actualData,
           headers: {
@@ -39,7 +39,7 @@ export const userAuthApi = createApi({
     sendPasswordResetEmail: builder.mutation({
       query: (user) => {
         return {
-          url: "send-reset-password-email/",
+          url: "user/send-reset-password-email/",
           method: "POST",
           body: user,
           headers: {
@@ -51,7 +51,7 @@ export const userAuthApi = createApi({
     resetPassword: builder.mutation({
       query: ({ actualData, id, token }) => {
         return {
-          url: `/reset-password/${id}/${token}/`,
+          url: `user/reset-password/${id}/${token}/`,
           method: "POST",
           body: actualData,
           headers: {
@@ -63,7 +63,7 @@ export const userAuthApi = createApi({
     getLoggedUser: builder.query({
       query: (access_token) => {
         return {
-          url: "profile/",
+          url: "user/profile/",
           method: "GET",
           headers: {
             authorization: `Bearer ${access_token}`,

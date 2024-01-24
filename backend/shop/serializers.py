@@ -16,6 +16,9 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class CartSerializer(serializers.ModelSerializer):
+    product_name = serializers.CharField(
+        source='product.title', read_only=True)
+
     class Meta:
         model = Cart
-        fields = ['product', 'quantity', 'total_sum']
+        fields = ['product', 'product_name', 'quantity', 'total_sum']
