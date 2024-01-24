@@ -1,20 +1,36 @@
 import { useParams } from "react-router-dom";
 import { FaArrowAltCircleRight } from "react-icons/fa";
-import { products } from "../../../constants";
+import { useProductsListQuery } from "../../../services/shopApi";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../features/titleSlice";
 const SingleProduct = () => {
+  const dispatch = useDispatch();
+  dispatch(setTitle("FiberNook | Product "));
+
   const { id } = useParams();
+  const { data: products, error, isLoading } = useProductsListQuery();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  if (isLoading) {
+    return <div className="text-center">Loading.... </div>;
+  }
+
+  if (error || !products || products.length === 0) {
+    return <div className="text-center">Error or Product not found</div>;
+  }
+
   const product = products.find((item) => item.id === parseInt(id, 10));
 
   if (!product) {
-    return (
-      <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
-        Product not found
-      </div>
-    );
+    return <div className="text-center">Product not found</div>;
   }
 
   const { title, category, price, image } = product;
-
+  console.log(title, category, price, image);
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
       <div className="flex flex-col md:flex-row items-center">
@@ -24,7 +40,7 @@ const SingleProduct = () => {
         <div className="md:w-1/2 md:ml-8 mt-8 md:mt-0">
           <h1 className="text-3xl font-bold mb-4">{title}</h1>
           <p className="text-gray-600 mb-4">{category}</p>
-          <p className="text-lg mb-4">${price.toFixed(2)}</p>
+          <p className="text-lg mb-4">${price}</p>
           <p className="mt-3 text-gray-600 text-base leading-6 text-justify sm:text-left sm:mt-4">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi
             asperiores ullam provident aliquam et, amet vel. Minima, nostrum
