@@ -7,7 +7,6 @@ import { getToken } from "../services/LocalStorageService";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import Cart from "./Pages/Cart";
-
 const Navbar = () => {
   const { access_token } = getToken();
   const [MenuOpen, setMenuOpen] = useState(false);

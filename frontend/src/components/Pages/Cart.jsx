@@ -2,25 +2,57 @@
 
 import { FaCaretSquareRight, FaTrash } from "react-icons/fa";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-const Cart = ({ isOpen, onClose, isLoggedIn, cartItems, setIsOpen }) => {
+import { Link, useNavigate } from "react-router-dom";
+import { useCartObjectListQuery } from "../../services/shopApi";
+import { getToken } from "../../services/LocalStorageService";
+import { useSelector } from "react-redux";
+
+const Cart = ({ isOpen, onClose, isLoggedIn, setIsOpen }) => {
+  const navigate = useNavigate();
+  const { access_token } = getToken();
+  const cartItems = useSelector((state) => state.title.cart); // Use cartItems from Redux state
+
+  if (!access_token) {
+    navigate("/login");
+  }
+
+  const {
+    data: cartData,
+    error,
+    isLoading,
+    refetch, // This is a function provided by useCartObjectListQuery for manual refetch
+  } = useCartObjectListQuery(access_token);
+
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden"; // Disable scrolling when the cart is open
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto"; // Enable scrolling when the cart is closed
+      document.body.style.overflow = "auto";
     }
 
     return () => {
-      document.body.style.overflow = "auto"; // Make sure to enable scrolling when the component is unmounted
+      document.body.style.overflow = "auto";
     };
   }, [isOpen]);
+
+  // useEffect to refetch data when cartItems prop changes
+  useEffect(() => {
+    refetch(); // This will trigger a manual refetch when cartItems changes
+  }, [cartItems, refetch]);
+
+  if (isLoading) {
+    return <div>Loading cart data...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching cart data: {error.message}</div>;
+  }
 
   if (!isOpen) return null;
 
   const getTotalPrice = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
+    return cartData.reduce(
+      (total, item) => total + parseFloat(item.total_sum),
       0
     );
   };
@@ -52,23 +84,24 @@ const Cart = ({ isOpen, onClose, isLoggedIn, cartItems, setIsOpen }) => {
             </button>
           </div>
           <div className="p-4">
-            {isLoggedIn && cartItems.length > 0 ? (
+            {isLoggedIn && cartData.length > 0 ? (
               <div>
                 <ul>
-                  {cartItems.map((item) => (
+                  {cartData.map((item) => (
                     <li
-                      key={item.id}
+                      key={item.product}
                       className="flex justify-between items-center mb-2"
                     >
                       <div>
-                        <p className="text-lg font-bold">{item.name}</p>
+                        <p className="text-lg font-bold">{item.product_name}</p>
                         <p className="text-gray-500">
-                          ${item.price.toFixed(2)} x {item.quantity}
+                          ${parseFloat(item.total_sum).toFixed(2)} x{" "}
+                          {item.quantity}
                         </p>
                       </div>
                       <div className="flex items-center">
                         <p className="text-lg font-bold">
-                          ${(item.price * item.quantity).toFixed(2)}
+                          ${parseFloat(item.total_sum).toFixed(2)}
                         </p>
                         <button
                           className="ml-2"

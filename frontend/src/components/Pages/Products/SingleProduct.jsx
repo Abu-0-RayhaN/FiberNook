@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { setTitle } from "../../../features/titleSlice";
 import { getToken } from "../../../services/LocalStorageService";
 import { CircularProgress } from "@mui/material";
+import { addToCart } from "../../../features/cartSlice";
 const SingleProduct = () => {
   //title setup
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const SingleProduct = () => {
         console.error("Error creating cart:", res.error);
         // Handle specific error cases or show an error message to the user
       } else if (res.data) {
+        dispatch(addToCart(res.data));
         navigate("/shop");
         console.log("Cart created successfully:", res.data);
       }

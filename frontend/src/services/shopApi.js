@@ -9,6 +9,17 @@ export const shopApi = createApi({
     productsList: builder.query({
       query: () => `shop/products/`,
     }),
+    cartObjectList: builder.query({
+      query: (access_token) => {
+        return {
+          url: "shop/cart/",
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+    }),
     createCart: builder.mutation({
       query: ({ access_token, data }) => {
         return {
@@ -24,4 +35,8 @@ export const shopApi = createApi({
   }),
 });
 
-export const { useProductsListQuery, useCreateCartMutation } = shopApi;
+export const {
+  useProductsListQuery,
+  useCreateCartMutation,
+  useCartObjectListQuery,
+} = shopApi;
