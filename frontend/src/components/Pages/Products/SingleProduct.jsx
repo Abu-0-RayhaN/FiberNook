@@ -60,12 +60,12 @@ const SingleProduct = () => {
       const res = await createCart({ data, access_token });
 
       if (res.error) {
-        console.error("Error creating cart:", res.error);
+        // console.error("Error creating cart:", res.error);
         // Handle specific error cases or show an error message to the user
       } else if (res.data) {
         dispatch(addToCart(res.data));
-        navigate("/shop");
-        console.log("Cart created successfully:", res.data);
+        navigate("/cart");
+        // console.log("Cart created successfully:", res.data);
       }
     } else {
       navigate("/login");

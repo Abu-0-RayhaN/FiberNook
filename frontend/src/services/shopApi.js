@@ -32,6 +32,29 @@ export const shopApi = createApi({
         };
       },
     }),
+    deleteCart: builder.mutation({
+      query: (access_token) => {
+        return {
+          url: "shop/cart/",
+          method: "DELETE",
+          headers: {
+            authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+    }),
+    deleteCartItem: builder.mutation({
+      query: ({ access_token, id }) => {
+        return {
+          url: "shop/cart/",
+          method: "DELETE",
+          body: { id: id },
+          headers: {
+            authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -39,4 +62,6 @@ export const {
   useProductsListQuery,
   useCreateCartMutation,
   useCartObjectListQuery,
+  useDeleteCartMutation,
+  useDeleteCartItemMutation,
 } = shopApi;
