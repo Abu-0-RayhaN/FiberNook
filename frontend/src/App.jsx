@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import Home from "./components/Pages/Home/Home";
 import SingleProduct from "./components/Pages/Products/SingleProduct";
 import ProductList from "./components/Pages/Products/ProductList";
-import ProductLi from "./components/Pages/Products/ProductsLi";
+import Cart from "./components/Pages/Cart";
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
   const title = useSelector((state) => state.title.title);
@@ -44,8 +44,10 @@ const App = () => {
             />
             <Route path="shop/:id" element={<SingleProduct />} />
             <Route path="shop" element={<ProductList />} />
-            <Route path="productli" element={<ProductLi />} />
-
+            <Route
+              path="cart"
+              element={access_token ? <Cart /> : <Navigate to="/login" />}
+            />
             <Route
               path="*"
               element={

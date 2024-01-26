@@ -10,3 +10,7 @@ Just copy paste the Products List code to HomeProducts except search option
 solve the access and refresh token problem
 
 you're using cartslice to refetch cart data when cartitems get updated but it's not working, you still need to reload to see the changes
+
+delete this cart and create totally entire cart component with route. 
+then do all the process there from cart product list to address fililng and payment
+when someone clicks cart let navigate to login if they are not logged in

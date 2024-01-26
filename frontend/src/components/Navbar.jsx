@@ -6,23 +6,10 @@ import { FaShoppingBag } from "react-icons/fa";
 import { getToken } from "../services/LocalStorageService";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
-import Cart from "./Pages/Cart";
 const Navbar = () => {
   const { access_token } = getToken();
   const [MenuOpen, setMenuOpen] = useState(false);
-  const [showCart, setShowCart] = useState(false);
-  const cartItems = [
-    { id: 1, name: "Product 1", price: 19.99, quantity: 2 },
-    { id: 2, name: "Product 2", price: 29.99, quantity: 1 },
-    { id: 3, name: "Product 3", price: 9.99, quantity: 3 },
-  ];
-  const toggleCart = () => {
-    setShowCart(!showCart);
-  };
-  const handleCartClick = (e) => {
-    e.preventDefault();
-    toggleCart();
-  };
+
   const toggleMenu = () => {
     setMenuOpen(!MenuOpen);
   };
@@ -44,7 +31,7 @@ const Navbar = () => {
               <FaShoppingCart className="text-black w-5 h-5 cursor-pointer hidden md:block" />
             </Link>
           </div>
-          <a href="/">
+          <Link to={"/"}>
             <span className="font-bold text-3xl">
               <span className="text-blue-500">F</span>
               <span className="text-yellow-500">i</span>
@@ -56,7 +43,7 @@ const Navbar = () => {
               <span className="text-indigo-500">o</span>
               <span className="text-khaki-500">k</span>
             </span>
-          </a>
+          </Link>
           <div className="text-lg text-black flex items-center gap-4">
             <NavLink
               to={"/dashboard"}
@@ -77,7 +64,6 @@ const Navbar = () => {
             <NavLink
               to="/cart"
               className="flex items-center gap-2 hover:text-red-500"
-              onClick={handleCartClick}
             >
               <FaShoppingBag className="w-5 h-5" />
               <span className="md:flex hidden">Cart</span>
@@ -122,13 +108,6 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <Cart
-            isOpen={showCart}
-            onClose={toggleCart}
-            isLoggedIn={!!access_token}
-            cartItems={cartItems}
-            setIsOpen={setShowCart}
-          />
         </div>
       </header>
     </>
