@@ -48,7 +48,7 @@ class Cart(models.Model):
         return f"{self.user} - {self.product} - {self.quantity} - {self.total_sum}"
 
 
-class Address(models.Model):
+class Addresses(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     street_address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
@@ -58,7 +58,7 @@ class Address(models.Model):
     additional_info = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.street_address}, {self.city}, {self.state}, {self.postal_code}, {self.country}"
+        return f"{self.user},{self.street_address}, {self.city}, {self.state}, {self.postal_code}, {self.country}"
 
     class Meta:
         verbose_name = "Address"

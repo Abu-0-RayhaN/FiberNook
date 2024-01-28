@@ -2,8 +2,8 @@ from .serializers import CartSerializer
 from .models import Cart
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
-from .models import Product, Cart, Category
-from .serializers import ProductSerializer, CartSerializer, CategorySerializer
+from .models import Product, Cart, Category, Addresses as Address
+from .serializers import ProductSerializer, CartSerializer, CategorySerializer, AddressesSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -68,3 +68,32 @@ class UserCartView(generics.ListCreateAPIView, generics.DestroyAPIView):
 class CategoryView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class UserAddressView(generics.RetrieveUpdateDestroyAPIView, generics.ListCreateAPIView):
+    serializer_class = AddressesSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        # Retrieve the user's address
+        address, created = Address.objects.get_or_create(
+            user=self.request.user)
+        return address
+
+    def update(self, request, *args, **kwargs):
+        # Update the user's address
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+    def perform_create(self, serializer):
+        # Associate the address with the authenticated user during creation
+        serializer.save(user=self.request.user)
+
+    def destroy(self, request, *args, **kwargs):
+        # Delete the user's address
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"detail": "Address deleted successfully."})

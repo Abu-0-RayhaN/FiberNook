@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Cart, Category, Address
+from .models import Product, Cart, Category, Addresses
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -24,8 +24,8 @@ class CartSerializer(serializers.ModelSerializer):
         fields = ['product', 'product_name', 'quantity', 'total_sum']
 
 
-class AddressSerializer(serializers.ModelSerializer):
+class AddressesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Address
+        model = Addresses
         fields = ['street_address', 'city', 'state',
                   'postal_code', 'country', "additional_info"]
