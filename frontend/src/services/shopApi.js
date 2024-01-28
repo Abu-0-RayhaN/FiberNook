@@ -55,6 +55,53 @@ export const shopApi = createApi({
         };
       },
     }),
+    createAddress: builder.mutation({
+      query: ({ access_token, data }) => {
+        return {
+          url: "shop/address/", // Adjust the URL according to your API endpoint
+          method: "POST",
+          body: data,
+          headers: {
+            authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+    }),
+
+    updateAddress: builder.mutation({
+      query: ({ access_token, data }) => {
+        return {
+          url: "shop/address/", // Adjust the URL according to your API endpoint
+          method: "PUT",
+          body: data,
+          headers: {
+            authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+    }),
+    getAddress: builder.query({
+      query: (access_token) => {
+        return {
+          url: "shop/address/", // Adjust the URL according to your API endpoint
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+    }),
+    deleteAddress: builder.mutation({
+      query: (access_token) => {
+        return {
+          url: "shop/address/", // Adjust the URL according to your API endpoint
+          method: "DELETE",
+          headers: {
+            authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -64,4 +111,8 @@ export const {
   useCartObjectListQuery,
   useDeleteCartMutation,
   useDeleteCartItemMutation,
+  useCreateAddressMutation,
+  useUpdateAddressMutation,
+  useGetAddressQuery,
+  useDeleteAddressMutation,
 } = shopApi;

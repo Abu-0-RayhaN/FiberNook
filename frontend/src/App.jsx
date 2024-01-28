@@ -11,6 +11,7 @@ import Home from "./components/Pages/Home/Home";
 import SingleProduct from "./components/Pages/Products/SingleProduct";
 import ProductList from "./components/Pages/Products/ProductList";
 import Cart from "./components/Pages/Cart";
+import Address from "./components/Pages/Address/Address";
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
   const title = useSelector((state) => state.title.title);
@@ -47,6 +48,10 @@ const App = () => {
             <Route
               path="cart"
               element={access_token ? <Cart /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="address"
+              element={access_token ? <Address /> : <Navigate to="/login" />}
             />
             <Route
               path="*"

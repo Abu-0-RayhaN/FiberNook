@@ -84,7 +84,7 @@ const ProductList = () => {
             new Set((products || []).map((item) => item.category))
           ).map((category) => (
             <button key={category} onClick={() => setCategory(category)}>
-              {category}
+              {getCatName(category)}
             </button>
           ))}
         </div>
@@ -128,3 +128,15 @@ const ProductList = () => {
 };
 
 export default ProductList;
+const getCatName = (sizeId) => {
+  const sizeNames = {
+    1: "Jewelry & Accessories",
+    2: "Clothing & Shoes",
+    3: "Wedding & Party",
+    4: "Home & Living",
+    5: "Toy & Entertainment",
+    6: "Art & Collectibles",
+  };
+
+  return sizeNames[sizeId] || "Unknown Size";
+};

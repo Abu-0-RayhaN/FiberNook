@@ -35,11 +35,13 @@ const renderSizes = (sizes) => {
 
 const getSizeName = (sizeId) => {
   const sizeNames = {
-    1: "S",
-    2: "M",
-    3: "L",
-    4: "XL",
-    5: "XXL",
+    1: "L",
+    2: "XL",
+    3: "XXL",
+    4: "M",
+    5: "3XL",
+    6: "4XL",
+    7: "ALL",
   };
 
   return sizeNames[sizeId] || "Unknown Size";

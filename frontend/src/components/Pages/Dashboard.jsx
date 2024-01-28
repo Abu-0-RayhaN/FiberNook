@@ -1,6 +1,6 @@
 //External imports
 // import { Button, Grid, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 //imports from files
@@ -74,11 +74,17 @@ const Dashboard = () => {
           <p className="text-lg">Email: {userData.email}</p>
           <p className="text-lg">Name: {userData.name}</p>
           <button
-            className="mt-8 bg-yellow-500 text-white px-8 py-3 rounded-full"
+            className="mt-8 bg-yellow-500 text-white px-8 py-3 rounded-full mb-4"
             onClick={handleLogout}
           >
             Logout
           </button>
+          <Link
+            className="mt-8 bg-yellow-500 text-white px-8 py-3 rounded-full"
+            to={`/address`}
+          >
+            address
+          </Link>
           <button
             className="mt-8 bg-blue-500 text-white px-8 py-3 rounded-full"
             onClick={toggleChangePassword}
