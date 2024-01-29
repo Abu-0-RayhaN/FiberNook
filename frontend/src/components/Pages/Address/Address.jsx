@@ -6,6 +6,7 @@ import {
   useGetAddressQuery,
 } from "../../../services/shopApi";
 import { useNavigate } from "react-router-dom";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 const Address = () => {
   const { access_token } = getToken();
   const { data, refetch, isLoading } = useGetAddressQuery(access_token);
@@ -64,11 +65,14 @@ const Address = () => {
       console.error("Error handling address action:", error);
     }
   };
-
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Your Address</h2>
-
+      <div className="flex flex-row-reverse justify-between">
+        <button onClick={() => history.back()}>
+          <FaArrowAltCircleLeft className="h-8 w-8" />
+        </button>
+        <h2 className="text-3xl font-bold mb-4 ml-5">Your Address</h2>
+      </div>
       <form className=" flex flex-col">
         <div className="mb-4">
           <label className="block text-gray-600">Street Address:</label>

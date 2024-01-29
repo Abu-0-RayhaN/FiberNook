@@ -12,6 +12,7 @@ import SingleProduct from "./components/Pages/Products/SingleProduct";
 import ProductList from "./components/Pages/Products/ProductList";
 import Cart from "./components/Pages/Cart";
 import Address from "./components/Pages/Address/Address";
+import Checkout from "./components/Pages/Checkout/Checkout";
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
   const title = useSelector((state) => state.title.title);
@@ -52,6 +53,10 @@ const App = () => {
             <Route
               path="address"
               element={access_token ? <Address /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="checkout"
+              element={access_token ? <Checkout /> : <Navigate to="/login" />}
             />
             <Route
               path="*"
