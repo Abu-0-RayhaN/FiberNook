@@ -16,7 +16,8 @@ const Address = () => {
   const initialAddress = {
     street_address: "",
     city: "",
-    state: "",
+    phone_number: "",
+    email: "",
     postal_code: "",
     country: "",
     additional_info: "",
@@ -57,8 +58,8 @@ const Address = () => {
       }
 
       // Refetch the data after successful operation
-      navigate("/dashboard");
       refetch();
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error handling address action:", error);
     }
@@ -68,7 +69,7 @@ const Address = () => {
     <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Your Address</h2>
 
-      <form>
+      <form className=" flex flex-col">
         <div className="mb-4">
           <label className="block text-gray-600">Street Address:</label>
           <input
@@ -90,18 +91,28 @@ const Address = () => {
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
           />
         </div>
+        <div className="mb-4">
+          <label className="block text-gray-600">Phone Number:</label>
+          <input
+            type="tel"
+            name="phone_number"
+            value={formData.phone_number}
+            onChange={handleFormChange}
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            required
+          />
+        </div>
 
         <div className="mb-4">
-          <label className="block text-gray-600">State:</label>
+          <label className="block text-gray-600">Email:</label>
           <input
-            type="text"
-            name="state"
-            value={formData.state}
+            type="email"
+            name="email"
+            value={formData.email}
             onChange={handleFormChange}
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
           />
         </div>
-
         <div className="mb-4">
           <label className="block text-gray-600">Postal Code:</label>
           <input
@@ -137,20 +148,12 @@ const Address = () => {
         <button
           type="button"
           onClick={handleAddressAction}
-          className={`bg-blue-500 text-white px-4 py-2 rounded-md mr-2 ${
+          className={`bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-400 ${
             isLoading && "opacity-50 cursor-not-allowed"
           }`}
           disabled={isLoading}
         >
           {isUpdateMode ? "Update Address" : "Add Address"}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => console.log("Delete address")}
-          className="bg-red-500 text-white px-4 py-2 rounded-md"
-        >
-          Delete Address
         </button>
       </form>
     </div>

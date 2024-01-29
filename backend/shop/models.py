@@ -52,13 +52,15 @@ class Addresses(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     street_address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
+    phone_number = models.CharField(
+        max_length=15, help_text="Enter phone number in international format", null=True)
+    email = models.EmailField(default='email@.com', null=True)
     postal_code = models.CharField(max_length=20)
     country = models.CharField(max_length=100)
     additional_info = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user},{self.street_address}, {self.city}, {self.state}, {self.postal_code}, {self.country}"
+        return f"{self.user},{self.street_address}, {self.city}, {self.postal_code}, {self.country}"
 
     class Meta:
         verbose_name = "Address"

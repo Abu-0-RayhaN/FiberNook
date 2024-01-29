@@ -76,7 +76,7 @@ class UserAddressView(generics.RetrieveUpdateDestroyAPIView, generics.ListCreate
 
     def get_object(self):
         # Retrieve the user's address
-        address, created = Address.objects.get_or_create(
+        address = Address.objects.get(
             user=self.request.user)
         return address
 

@@ -91,17 +91,6 @@ export const shopApi = createApi({
         };
       },
     }),
-    deleteAddress: builder.mutation({
-      query: (access_token) => {
-        return {
-          url: "shop/address/", // Adjust the URL according to your API endpoint
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${access_token}`,
-          },
-        };
-      },
-    }),
   }),
 });
 
@@ -114,5 +103,4 @@ export const {
   useCreateAddressMutation,
   useUpdateAddressMutation,
   useGetAddressQuery,
-  useDeleteAddressMutation,
 } = shopApi;
