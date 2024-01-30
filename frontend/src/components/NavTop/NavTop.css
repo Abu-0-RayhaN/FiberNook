@@ -1,0 +1,23 @@
+.nav-top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    text-align: center;
+}
+
+.text-container {
+    overflow: hidden;
+}
+
+.slide-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.slide-out {
+    opacity: 0;
+    transform: translateY(-100%);
+}

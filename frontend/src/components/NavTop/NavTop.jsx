@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import "./NavTop.css"; // Import a separate CSS file for styling
 
 const NavTop = () => {
   const texts = [
@@ -12,11 +13,19 @@ const NavTop = () => {
   ];
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [slideIn, setSlideIn] = useState(true);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      // Change the text index to the next one in the array
-      setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+      // Start the slide-out transition
+      setSlideIn(false);
+
+      // Change the text index after the slide-out transition completes
+      setTimeout(() => {
+        setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        // Start the slide-in transition
+        setSlideIn(true);
+      }, 500);
     }, 5000);
 
     // Clear the interval on component unmount to prevent memory leaks
@@ -26,14 +35,18 @@ const NavTop = () => {
   const currentText = texts[currentTextIndex];
 
   return (
-    <div
-      className={`w-full bg-gray-950 text-center py-1 px-2 text-sm md:text-md transition-all duration-700 text-white flex justify-center items-center gap-1`}
-    >
-      {currentText}{" "}
-      <Link to={`/shop`} className="flex justify-center items-center gap-2">
-        <p>shop</p>
-        <FaArrowRightLong />
-      </Link>
+    <div className="nav-top-container py-1 px-3 text-md md:text-xs bg-gray-950">
+      <div
+        className={`text-container ${
+          slideIn ? "slide-in" : "slide-out"
+        } flex justify-center items-center`}
+      >
+        <p>{currentText}</p>
+        <Link to={`/shop`} className="flex justify-center items-center gap-2">
+          <p>shop</p>
+          <FaArrowRightLong />
+        </Link>
+      </div>
     </div>
   );
 };
