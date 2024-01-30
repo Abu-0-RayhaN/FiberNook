@@ -25,13 +25,15 @@ const Checkout = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl xl:px-28 px-4">
+    <div className="max-w-screen-2xl xl:px-28 px-4 md:mb-20">
       <button onClick={() => history.back()}>
         <FaArrowAltCircleLeft className="h-8 w-8" />
       </button>
-      <div className="text-center flex flex-col md:flex-row-reverse">
+      <div className="text-center flex flex-col-reverse md:flex-row-reverse">
         <div className="p-4 bg-white rounded-lg shadow-lg md:w-1/2 w-full">
-          <h2 className="text-3xl font-bold mb-6 text-gray-800">Your Cart</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">
+            Shopping List
+          </h2>
 
           {isCartLoading && <div>Loading cart data...</div>}
 

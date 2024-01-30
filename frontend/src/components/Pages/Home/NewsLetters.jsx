@@ -13,7 +13,7 @@ const NewsLetters = () => {
 
   return (
     <div className="bg-gray-100">
-      <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
+      <div className="max-w-screen-2xl container py-12 xl:px-12 px-4 pb-12">
         <p className="title">Follow Products And Discounts on Instagram</p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-8">
           {images.map((image, index) => (

@@ -24,14 +24,14 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="max-w-screen-2xl xl:px-28 px-4 ">
+      <header className="max-w-screen-2xl xl:px-12 px-4 ">
         <nav className="container flex justify-between items-center mx-auto pt-6 pb-3">
-          <div>
+          <div className="">
             <Link to={`/shop`}>
               <FaShoppingCart className="text-black w-5 h-5 cursor-pointer hidden md:block" />
             </Link>
           </div>
-          <Link to={"/"}>
+          <Link to={"/"} className="">
             <span className="font-bold text-3xl">
               <span className="text-blue-500">F</span>
               <span className="text-yellow-500">i</span>
