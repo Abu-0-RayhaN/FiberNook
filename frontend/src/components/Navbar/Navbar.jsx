@@ -1,0 +1,373 @@
+//    Icons Imports Starts
+import { FaBars, FaTimes, FaUserCheck } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
+//   Icons Imports Ends
+import { getToken } from "../../services/LocalStorageService";
+import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+import "./Navbar.css";
+const Navbar = () => {
+  const { access_token } = getToken();
+  const [MenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!MenuOpen);
+  };
+
+  return (
+    <>
+      <header className="max-w-screen-2xl xl:px-0 px-4 ">
+        <nav className="container flex justify-between items-center mx-auto pt-6 pb-3">
+          <div className="hidden md:flex gap-2 font-Kanit font-semibold">
+            <Link to={`/shop`} className=" p-2 hover:bg-gray-100 rounded-md">
+              About
+            </Link>
+            <Link to={`/shop`} className=" p-2 hover:bg-gray-100 rounded-md">
+              FiberNook Stories
+            </Link>
+          </div>
+          <Link to={"/"} className="font-Rubik">
+            <span className="font-bold text-4xl">
+              <span className="text-blue-500">F</span>
+              <span className="text-yellow-500">i</span>
+              <span className="text-green-500">b</span>
+              <span className="text-red-500">e</span>
+              <span className="text-purple-500">r</span>
+              <span className="text-orange-500">N</span>
+              <span className="text-pink-500">o</span>
+              <span className="text-indigo-500">o</span>
+              <span className="text-khaki-500">k</span>
+            </span>
+          </Link>
+          <div className="text-lg text-black flex items-center gap-4">
+            <NavLink
+              to={"/dashboard"}
+              className="flex items-center gap-0 smd:gap-2 hover:text-red-500"
+            >
+              {" "}
+              {access_token ? (
+                <FaUserCheck className="w-8 h-8" />
+              ) : (
+                <FaUser className="w-8 h-8" />
+              )}
+              {access_token ? (
+                <span className="pl-2 hidden md:flex font-Manrope">
+                  Dashboard
+                </span>
+              ) : (
+                <span className="pl-2 hidden md:flex font-Manrope">Login</span>
+              )}
+            </NavLink>
+            <NavLink
+              to="/cart"
+              className="flex items-center gap-2 hover:text-red-500"
+            >
+              <FaShoppingBag className="w-8 h-8" />
+              <span className="md:flex hidden">Cart</span>
+            </NavLink>
+            {/* navbar for small device */}
+            <div className="md:hidden">
+              <button onClick={toggleMenu}>
+                {MenuOpen ? (
+                  <FaTimes className="w-8 h-8 text-black mt-3" />
+                ) : (
+                  <FaBars className="w-8 h-8 text-black mt-3" />
+                )}
+              </button>
+            </div>
+          </div>
+        </nav>
+        <hr className="hidden md:flex" />
+        {/* Items Categories  */}
+        <div className="pt-4 md:px-12">
+          <ul className="md:flex items-center justify-between text-black hidden font-Roboto text-center">
+            {/* Manually code each list item */}
+            <li className="hover:text-orange-500 ">
+              <NavLink to="/shop">New Arrivals</NavLink>
+              <div className="dropdown  text-black cursor-pointer">
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Stylish T-shirts</li>
+                    <li>Elegant Dresses</li>
+                    <li>Latest Jeans Collection</li>
+                    <li>Unique Accessories</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Comfortable Sneakers</li>
+                    <li>Trendy Hats</li>
+                    <li>Chic Handbags</li>
+                    <li>Modern Jackets</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul>
+                    <li>Statement Necklaces</li>
+                    <li>Classy Watches</li>
+                    <li>Designer Sunglasses</li>
+                    <li>Exclusive Footwear</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop" className="">
+                Best-Sellers
+              </NavLink>
+              <div className="dropdown text-black cursor-pointer">
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Top-rated T-shirts</li>
+                    <li>Bestselling Dresses</li>
+                    <li>Customer-favorite Jeans</li>
+                    <li>Popular Accessories</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Must-Have Sneakers</li>
+                    <li>Hot-selling Hats</li>
+                    <li>In-Demand Handbags</li>
+                    <li>Latest Jackets</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul>
+                    <li>Statement Jewelry</li>
+                    <li>Top-selling Watches</li>
+                    <li>Stylish Sunglasses</li>
+                    <li>Best Deals on Footwear</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop" className="text-black cursor-pointer">
+                Clothing
+              </NavLink>
+              <div className="dropdown text-black cursor-pointer">
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Stylish Dresses</li>
+                    <li>Trendy T-shirts</li>
+                    <li>Comfortable Jeans</li>
+                    <li>Chic Tops</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Fashionable Jackets</li>
+                    <li>Elegant Skirts</li>
+                    <li>Casual Shirts</li>
+                    <li>Active Wear</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul>
+                    <li>Formal Wear</li>
+                    <li>Seasonal Collections</li>
+                    <li>Luxury Apparel</li>
+                    <li>Exclusive Accessories</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop" className="text-black cursor-pointer">
+                Sweaters
+              </NavLink>
+              <div className="dropdown text-black cursor-pointer">
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Warm Wool Sweater</li>
+                    <li>Cozy Turtleneck</li>
+                    <li>Stylish Cardigan</li>
+                    <li>Festive Holiday Sweater</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Chunky Knit Pullover</li>
+                    <li>Luxurious Cashmere Sweater</li>
+                    <li>Colorful Patterned Sweater</li>
+                    <li>Lightweight V-Neck Sweater</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul>
+                    <li>Fashionable Poncho</li>
+                    <li>Cropped Sweater</li>
+                    <li>Comfy Oversized Sweater</li>
+                    <li>Elegant Crewneck</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop" className="text-black cursor-pointer">
+                Jeans & Denim
+              </NavLink>
+              <div className="dropdown text-black cursor-pointer">
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Skinny Fit Jeans</li>
+                    <li>Classic Blue Denim</li>
+                    <li>Distressed Jeans</li>
+                    <li>High-Waisted Denim</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Bootcut Jeans</li>
+                    <li>Wide-Leg Denim</li>
+                    <li>Embroidered Jeans</li>
+                    <li>Black Denim</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Flare Jeans</li>
+                    <li>Boyfriend Fit Denim</li>
+                    <li>White Denim</li>
+                    <li>Raw Hem Jeans</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop" className="text-black cursor-pointer">
+                Dresses
+              </NavLink>
+              <div className="dropdown text-black cursor-pointer">
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Summer Sundress</li>
+                    <li>Elegant Evening Gown</li>
+                    <li>Floral Maxi Dress</li>
+                    <li>Casual Shirt Dress</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Cocktail Party Dress</li>
+                    <li>Little Black Dress</li>
+                    <li>Bohemian Midi Dress</li>
+                    <li>Formal Ball Gown</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul>
+                    <li>Wrap Dress</li>
+                    <li>Strapless Prom Dress</li>
+                    <li>Printed Shift Dress</li>
+                    <li>Knitted Sweater Dress</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop" className="text-black cursor-pointer">
+                Shoes, Bags, & Accessories
+              </NavLink>
+              <div className="dropdown text-black cursor-pointer">
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Comfortable Sneakers</li>
+                    <li>Stylish Boots</li>
+                    <li>Classic Heels</li>
+                    <li>Casual Flats</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Trendy Backpacks</li>
+                    <li>Chic Handbags</li>
+                    <li>Leather Totes</li>
+                    <li>Crossbody Bags</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul>
+                    <li>Statement Necklaces</li>
+                    <li>Designer Watches</li>
+                    <li>Stylish Sunglasses</li>
+                    <li>Unique Hats</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop" className="text-black cursor-pointer">
+                Sale
+              </NavLink>
+              <div className="dropdown text-black cursor-pointer">
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Clearance Dresses</li>
+                    <li>Discounted Shoes</li>
+                    <li>Reduced-price Bags</li>
+                    <li>On-Sale Accessories</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul className=" flex flex-col gap-6">
+                    <li>Markdowns on Tops</li>
+                    <li>Special Deals on Bottoms</li>
+                    <li>Flash Sale Items</li>
+                    <li>Last Chance Offers</li>
+                  </ul>
+                </div>
+                <div className="column">
+                  <ul>
+                    <li>Seasonal Discounts</li>
+                    <li>Limited-Time Promotions</li>
+                    <li>Exclusive Sale Items</li>
+                    <li>Discounted Fashion</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Only mobile menu item  */}
+        <div className="pt-4">
+          <ul
+            className={`bg-black text-white px-4 py-2 rounded font-Roboto flex flex-col gap-3 ${
+              MenuOpen ? "" : "hidden"
+            }`}
+          >
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop">New Arrivals</NavLink>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop">Best-Sellers</NavLink>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop">Clothing</NavLink>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop">Sweaters</NavLink>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop">Jeans & Denim</NavLink>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop">Dresses</NavLink>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop">Shoes, Bags, & Accessories</NavLink>
+            </li>
+            <li className="hover:text-orange-500">
+              <NavLink to="/shop">Sale</NavLink>
+            </li>
+          </ul>
+        </div>
+      </header>
+    </>
+  );
+};
+
+export default Navbar;

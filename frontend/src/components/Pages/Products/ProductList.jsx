@@ -63,13 +63,13 @@ const ProductList = () => {
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
       {/* Search Bar Div at the Top */}
-      <div className="mb-8 text-center md:text-start">
+      <div className="mb-8 flex justify-center">
         <input
           type="text"
           placeholder="Search products..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          className="border bg-gray-100 border-gray-300 px-2 py-1 rounded-sm font-sans text-gray-700 md:w-[30%] focus:outline-gray-400"
+          className="border bg-gray-100 border-gray-300 px-2 py-2 w-full rounded-sm font-sans text-gray-700 md:w-[50%] focus:outline-gray-400"
         />
       </div>
 

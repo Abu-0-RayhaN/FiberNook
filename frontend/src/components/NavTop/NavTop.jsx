@@ -35,7 +35,7 @@ const NavTop = () => {
   const currentText = texts[currentTextIndex];
 
   return (
-    <div className="nav-top-container py-1 px-3 text-md md:text-xs bg-gray-950">
+    <div className="nav-top-container py-1 px-3 text-xs md:text-md bg-gray-950">
       <div
         className={`text-container ${
           slideIn ? "slide-in" : "slide-out"

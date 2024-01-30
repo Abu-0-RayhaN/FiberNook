@@ -1,0 +1,33 @@
+/* Add this to your CSS file or style tag */
+.dropdown {
+    position: absolute;
+    /* Adjust to position vertically */
+    /* transform: translateY(8%); */
+    /* Center the dropdown vertically */
+    opacity: 0;
+    visibility: hidden;
+    width: 98vw;
+    left: 1%;
+    /* Full width with some margin on both sides */
+    height: 50vh;
+    /* Half of the screen height */
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.column {
+    flex: 1;
+    margin-right: 20px;
+}
+
+/* Show the dropdown when the parent li is hovered */
+li:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+}

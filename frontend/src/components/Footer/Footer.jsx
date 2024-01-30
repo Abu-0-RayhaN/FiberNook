@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
         <div className="flex md:flex-row flex-col justify-center items-center text-center md:text-start">
           <div className="flex flex-col md:w-2/5 w-full gap-5 text-center md:text-start">
-            <div className="flex justify-center md:justify-start">
+            <div className="flex justify-center md:justify-start font-Rubik">
               <span className="font-bold text-3xl">
                 <span className="text-blue-500">F</span>
                 <span className="text-yellow-500">i</span>
