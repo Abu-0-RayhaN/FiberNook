@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="max-w-screen-2xl xl:px-0 px-4 ">
+      <header className="max-w-screen-2xl xl:px-0 px-4 sticky bg-white z-50 top-0 left-0 right-0">
         <nav className="container flex justify-between items-center mx-auto pt-6 pb-3">
           <div className="hidden md:flex gap-2 font-Kanit font-semibold">
             <Link to={`/shop`} className=" p-2 hover:bg-gray-100 rounded-md">
