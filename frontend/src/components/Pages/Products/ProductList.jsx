@@ -61,7 +61,7 @@ const ProductList = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
+    <div className="max-w-screen-2xl container pb-32 py-12 xl:px-12 px-4">
       {/* Search Bar Div at the Top */}
       <div className="mb-8 flex justify-center">
         <input
@@ -90,11 +90,11 @@ const ProductList = () => {
         </div>
 
         {/* Sorting Option */}
-        <div className="bg-black text-white py-2 px-3 rounded-sm">
+        <div className="bg-gray-950 text-white py-2 px-3 rounded-sm">
           <div className="flex gap-2 justify-around">
             <FaFilter className="text-white h-4 w-4 mt-1" />
             <select
-              className="bg-black text-white px-2 py-1 rounded-sm focus:outline-none"
+              className="bg-gray-950 text-white px-2 py-1 rounded-sm focus:outline-none"
               value={sortingOption}
               onChange={(e) => setSortOption(e.target.value)}
             >

@@ -68,22 +68,6 @@ export const products = [
   },
   {
     id: 8,
-    title: "Nike Repel Miler",
-    category: "hoodies",
-    price: 120.5,
-    image: topProduct3,
-    status: "Favourite",
-  },
-  {
-    id: 9,
-    title: "Nike Repel Miler",
-    category: "hoodies",
-    price: 120.5,
-    image: topProduct3,
-    status: "Favourite",
-  },
-  {
-    id: 10,
     title: "Nike Sportswear Futura Luxe",
     category: "Glasses",
     price: 160.0,
