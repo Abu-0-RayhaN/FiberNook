@@ -1,5 +1,4 @@
 import pic1 from "./pic1.png";
-import logo from "./logo.png";
 import cover from "./cover.png";
 import card7 from "./card7.png";
 import card8 from "./card8.png";
@@ -14,7 +13,13 @@ import topProduct4 from "./topProduct4.png";
 import topProduct5 from "./topProduct5.png";
 import topProduct6 from "./topProduct6.png";
 import topProduct7 from "./topProduct7.png";
+import topProduct8 from "./topProduct8.jpg";
+import topProduct9 from "./topProduct9.jpg";
+import topProduct10 from "./topProduct10.jpg";
+import topProduct11 from "./topProduct11.jpg";
 import background from "./background.png";
+import navImage from "./navImage.png";
+import navImage2 from "./navImage2.png";
 import zara from "./zara.png";
 import card from "./card.png";
 import card1 from "./card1.png";
@@ -23,8 +28,13 @@ import card3 from "./card3.png";
 import card4 from "./card4.png";
 import card5 from "./card5.png";
 export {
+  topProduct10,
+  topProduct11,
+  topProduct8,
+  topProduct9,
+  navImage,
+  navImage2,
   pic1,
-  logo,
   cover,
   card7,
   card10,

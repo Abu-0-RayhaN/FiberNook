@@ -1,5 +1,10 @@
 //    Icons Imports Starts
-import { FaBars, FaTimes, FaUserCheck } from "react-icons/fa";
+import {
+  FaArrowAltCircleRight,
+  FaBars,
+  FaTimes,
+  FaUserCheck,
+} from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 //   Icons Imports Ends
@@ -7,6 +12,12 @@ import { getToken } from "../../services/LocalStorageService";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./Navbar.css";
+import {
+  navImage,
+  navImage2,
+  topProduct8,
+  topProduct9,
+} from "../../assets/images";
 const Navbar = () => {
   const { access_token } = getToken();
   const [MenuOpen, setMenuOpen] = useState(false);
@@ -81,7 +92,7 @@ const Navbar = () => {
         <hr className="hidden md:flex" />
         {/* Items Categories  */}
         <div className="pt-4 md:px-12">
-          <ul className="md:flex items-center justify-between text-black hidden font-Roboto text-center">
+          <ul className="md:flex items-center justify-evenly text-black hidden font-Roboto text-center">
             {/* Manually code each list item */}
             <li className="hover:text-orange-500 ">
               <NavLink to="/shop">New Arrivals</NavLink>
@@ -103,11 +114,17 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="column">
-                  <ul>
-                    <li>Statement Necklaces</li>
-                    <li>Classy Watches</li>
-                    <li>Designer Sunglasses</li>
-                    <li>Exclusive Footwear</li>
+                  <ul className="">
+                    <li className="flex justify-center items-start">
+                      <img
+                        src={navImage}
+                        alt="navImage"
+                        className="w-40 h-34"
+                      />
+                    </li>
+                    <li className="flex justify-center items-center gap-2">
+                      Explore Now <FaArrowAltCircleRight className="h-4 w-4" />
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -134,11 +151,17 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="column">
-                  <ul>
-                    <li>Statement Jewelry</li>
-                    <li>Top-selling Watches</li>
-                    <li>Stylish Sunglasses</li>
-                    <li>Best Deals on Footwear</li>
+                  <ul className="">
+                    <li className="flex justify-center items-start">
+                      <img
+                        src={navImage2}
+                        alt="navImage"
+                        className="w-40 h-34"
+                      />
+                    </li>
+                    <li className="flex justify-center items-center gap-2">
+                      Explore Now <FaArrowAltCircleRight className="h-4 w-4" />
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -165,11 +188,17 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="column">
-                  <ul>
-                    <li>Formal Wear</li>
-                    <li>Seasonal Collections</li>
-                    <li>Luxury Apparel</li>
-                    <li>Exclusive Accessories</li>
+                  <ul className="">
+                    <li className="flex justify-center items-start">
+                      <img
+                        src={topProduct8}
+                        alt="navImage"
+                        className="w-40 h-34"
+                      />
+                    </li>
+                    <li className="flex justify-center items-center gap-2">
+                      Explore Now <FaArrowAltCircleRight className="h-4 w-4" />
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -196,11 +225,17 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="column">
-                  <ul>
-                    <li>Fashionable Poncho</li>
-                    <li>Cropped Sweater</li>
-                    <li>Comfy Oversized Sweater</li>
-                    <li>Elegant Crewneck</li>
+                  <ul className="">
+                    <li className="flex justify-center items-start">
+                      <img
+                        src={topProduct9}
+                        alt="navImage"
+                        className="w-40 h-34"
+                      />
+                    </li>
+                    <li className="flex justify-center items-center gap-2">
+                      Explore Now <FaArrowAltCircleRight className="h-4 w-4" />
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -258,7 +293,7 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="column">
-                  <ul>
+                  <ul className="flex flex-col gap-6">
                     <li>Wrap Dress</li>
                     <li>Strapless Prom Dress</li>
                     <li>Printed Shift Dress</li>
@@ -289,7 +324,7 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="column">
-                  <ul>
+                  <ul className="flex flex-col gap-5">
                     <li>Statement Necklaces</li>
                     <li>Designer Watches</li>
                     <li>Stylish Sunglasses</li>
@@ -320,7 +355,7 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="column">
-                  <ul>
+                  <ul className="flex flex-col gap-5">
                     <li>Seasonal Discounts</li>
                     <li>Limited-Time Promotions</li>
                     <li>Exclusive Sale Items</li>

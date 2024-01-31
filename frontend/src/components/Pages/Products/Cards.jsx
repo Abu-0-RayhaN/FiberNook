@@ -10,7 +10,11 @@ const Cards = ({ product }) => {
         className="m-1 w-full hover:scale-105 transition-all duration-200"
         key={id}
       >
-        <img src={image} alt={title} className="card-image" />
+        <img
+          src={image}
+          alt={title}
+          className="card-image w-[312px] h-[400px]"
+        />
         <div className="mx-2 mt-4 mb-2">
           <h3 className="text-lg text-black">{title}</h3>
           <div className="flex flex-col md:flex-row justify-between mt-2">

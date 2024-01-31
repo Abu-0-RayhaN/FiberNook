@@ -66,7 +66,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="p-4 max-w-screen-2xl container py-12 xl:px-72 pb-12 px-32 bg-white rounded-lg shadow-lg">
+    <div className="p-4 max-w-screen-2xl container py-12 xl:px-72 pb-12 md:px-32 sm:px-24 px-10 bg-white rounded-lg shadow-lg">
       <h2 className="text-3xl font-bold mb-6 text-gray-800">Your Cart</h2>
 
       {isLoading && <div>Loading cart data...</div>}
