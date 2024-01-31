@@ -15,8 +15,6 @@ import topProduct6 from "./topProduct6.png";
 import topProduct7 from "./topProduct7.png";
 import topProduct8 from "./topProduct8.jpg";
 import topProduct9 from "./topProduct9.jpg";
-import topProduct10 from "./topProduct10.jpg";
-import topProduct11 from "./topProduct11.jpg";
 import background from "./background.png";
 import navImage from "./navImage.png";
 import navImage2 from "./navImage2.png";
@@ -28,8 +26,6 @@ import card3 from "./card3.png";
 import card4 from "./card4.png";
 import card5 from "./card5.png";
 export {
-  topProduct10,
-  topProduct11,
   topProduct8,
   topProduct9,
   navImage,
