@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { setTitle } from "../../../features/titleSlice";
 import { getToken } from "../../../services/LocalStorageService";
 import { CircularProgress } from "@mui/material";
-import { addToCart } from "../../../features/cartSlice";
 import CustomerReview from "./CustomerReview";
 const SingleProduct = () => {
   //title setup
@@ -63,7 +62,6 @@ const SingleProduct = () => {
         // console.error("Error creating cart:", res.error);
         // Handle specific error cases or show an error message to the user
       } else if (res.data) {
-        dispatch(addToCart(res.data));
         navigate("/cart");
         // console.log("Cart created successfully:", res.data);
       }
@@ -79,10 +77,10 @@ const SingleProduct = () => {
         className="text-gray-800 font-Roboto text-right hover:text-red-500"
       >
         Home /
-        <Link to={`shop`} className="hover:text-red-500">
-          {" "}
-          shop /
-        </Link>
+      </Link>
+      <Link to={`shop`} className="hover:text-red-500 font-Roboto">
+        {" "}
+        Shop /
       </Link>
       <div className="flex flex-col md:flex-row items-center">
         <div className="md:w-1/2">
