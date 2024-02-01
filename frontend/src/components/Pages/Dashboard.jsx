@@ -65,7 +65,7 @@ const Dashboard = () => {
       }, 2000);
     }
   };
-
+  useEffect(() => window.scrollTo(0, 0));
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
       <div className="flex flex-col md:flex-row">

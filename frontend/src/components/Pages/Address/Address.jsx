@@ -65,6 +65,7 @@ const Address = () => {
       console.error("Error handling address action:", error);
     }
   };
+  useEffect(() => window.scrollTo(0, 0), []);
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
       <div className="flex flex-row-reverse justify-between">

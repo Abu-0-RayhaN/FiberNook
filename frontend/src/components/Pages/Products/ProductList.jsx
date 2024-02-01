@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setTitle } from "../../../features/titleSlice";
 import { useProductsListQuery } from "../../../services/shopApi";
+import { Link } from "react-router-dom";
 const ProductList = () => {
   const [selectedCategory, setSelectedCategory] = useState("all products");
   const [sortingOption, setSortingOption] = useState("all");
@@ -63,6 +64,9 @@ const ProductList = () => {
   return (
     <div className="max-w-screen-2xl container pb-32 py-12 xl:px-12 px-4">
       {/* Search Bar Div at the Top */}
+      <Link to={`/`} className="text-gray-800 font-Roboto">
+        Home/
+      </Link>
       <div className="mb-8 flex justify-center">
         <input
           type="text"

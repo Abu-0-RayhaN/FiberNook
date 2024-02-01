@@ -64,12 +64,16 @@ const Cart = () => {
       0
     );
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="p-4 max-w-screen-2xl container py-12 xl:px-72 pb-12 md:px-32 sm:px-24 px-10 bg-white rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">Your Cart</h2>
+      <h2 className="text-3xl font-bold mb-6 text-gray-800 font-Roboto">
+        Your Cart
+      </h2>
 
-      {isLoading && <div>Loading cart data...</div>}
+      {isLoading && <div className="font-Roboto">Loading cart data...</div>}
 
       {error && <div className="text-red-600">{error}</div>}
 
@@ -83,11 +87,11 @@ const Cart = () => {
               <div className="flex flex-col">
                 <Link
                   to={`/shop/${item.product}`}
-                  className="text-lg font-bold text-gray-800 hover:text-red-500"
+                  className="text-lg font-bold text-gray-800 hover:text-red-500 font-Roboto"
                 >
                   {item.product_name}
                 </Link>
-                <p className="text-gray-500">
+                <p className="text-gray-500 font-Roboto">
                   ${parseFloat(item.total_sum).toFixed(2)} x {item.quantity}
                 </p>
               </div>
@@ -96,7 +100,7 @@ const Cart = () => {
                   ${parseFloat(item.total_sum).toFixed(2)}
                 </p>
                 <button
-                  className="ml-4 focus:outline-none"
+                  className="ml-4 focus:outline-none font-Roboto"
                   onClick={() => {
                     if (
                       window.confirm(
@@ -113,11 +117,11 @@ const Cart = () => {
             </li>
           ))}
           <div className="mt-6 flex justify-between">
-            <p className="text-lg font-bold text-gray-800">
+            <p className="text-lg font-bold text-gray-800 font-Roboto">
               Total: ${getTotalPrice().toFixed(2)}
             </p>
             <button
-              className="p-2 text-white bg-red-600 rounded-md"
+              className="p-2 text-white bg-red-600 rounded-md font-Roboto"
               onClick={() => {
                 if (
                   window.confirm("Are you sure you want to clear your cart?")
@@ -136,11 +140,14 @@ const Cart = () => {
           {isLoading ? "Loading cart data..." : "No items in your cart."}
         </p>
       )}
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-between mt-8 font-Roboto">
         <Link to="/shop" className="p-2 text-white bg-gray-500 rounded-md">
           Continue Shopping
         </Link>
-        <Link to="/checkout" className="p-2 text-white bg-green-500 rounded-md">
+        <Link
+          to="/checkout"
+          className="font-Roboto p-2 text-white bg-green-500 rounded-md"
+        >
           Proceed to Checkout
         </Link>
       </div>

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import {
   useCreateCartMutation,
@@ -26,7 +26,7 @@ const SingleProduct = () => {
 
   //initial scrollto top
   useEffect(() => {
-    window.scrollTo(0, 100);
+    window.scrollTo(0, 0);
   });
 
   //product initial Loading handling
@@ -59,6 +59,7 @@ const SingleProduct = () => {
       const res = await createCart({ data, access_token });
 
       if (res.error) {
+        navigate("/login");
         // console.error("Error creating cart:", res.error);
         // Handle specific error cases or show an error message to the user
       } else if (res.data) {
@@ -73,6 +74,16 @@ const SingleProduct = () => {
 
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
+      <Link
+        to={`/`}
+        className="text-gray-800 font-Roboto text-right hover:text-red-500"
+      >
+        Home /
+        <Link to={`shop`} className="hover:text-red-500">
+          {" "}
+          shop /
+        </Link>
+      </Link>
       <div className="flex flex-col md:flex-row items-center">
         <div className="md:w-1/2">
           <img src={image} alt={title} className="w-full h-auto" />

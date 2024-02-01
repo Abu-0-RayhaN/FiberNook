@@ -36,7 +36,7 @@ const NavTop = () => {
   const currentText = texts[currentTextIndex];
 
   return (
-    <div className="nav-top-container py-2 px-3 text-xs md:text-md bg-gray-950 flex justify-between sticky top-0 left-0 right-0">
+    <div className="nav-top-container py-3 px-3 text-xs md:text-md bg-gray-950 flex justify-between sticky top-0">
       <div className="hidden md:flex"></div>
       <div
         className={`text-container w-full ${
@@ -51,19 +51,19 @@ const NavTop = () => {
       </div>
       <div className="hidden md:flex gap-2 md:justify-end items-center">
         <a href="https://www.instagram.com/abu_0_rayhan/">
-          <FaInstagram className="hidden md:block" />
+          <FaInstagram className="hidden md:block h-4 w-4" />
         </a>
         <span>|</span>
         <a href="https://abu-0-rayhan.netlify.app/">
-          <FaYoutube className="hidden md:block" />
+          <FaYoutube className="hidden md:block h-4 w-4" />
         </a>
         <span>|</span>
         <a href="https://www.linkedin.com/in/abu-0-rayhan/">
-          <FaLinkedinIn className="" />
+          <FaLinkedinIn className="h-4 w-4" />
         </a>
         <span>|</span>
         <a href="https://github.com/Abu-0-RayhaN">
-          <FaGithub className="" />
+          <FaGithub className=" h-4 w-4" />
         </a>
       </div>
     </div>
