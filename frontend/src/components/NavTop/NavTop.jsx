@@ -36,7 +36,7 @@ const NavTop = () => {
   const currentText = texts[currentTextIndex];
 
   return (
-    <div className="nav-top-container py-3 px-3 text-xs md:text-md bg-gray-950 flex justify-between sticky top-0">
+    <div className="nav-top-container h-14 sm:h-auto sm:py-3 px-3 text-xs md:text-md bg-gray-950 flex justify-between sticky top-0">
       <div className="hidden md:flex"></div>
       <div
         className={`text-container w-full ${

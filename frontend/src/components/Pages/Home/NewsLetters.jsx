@@ -31,10 +31,10 @@ const NewsLetters = () => {
           <div className="flex flex-col w-full md:flex-row gap-5 md:w-[40%]">
             <input
               type="text"
-              placeholder="Enter your text"
+              placeholder="Enter your Email"
               className="border-b-2 border-gray-400 focus:border-black outline-none px-4 py-2 w-full bg-transparent font-serif"
             />
-            <button className="border-b-2 text-sm px-3 border-gray-400 font-bold transition duration-300 hover:border-black hover:text-black inline-block uppercase text-gray-500">
+            <button className=" bg-black sm:bg-transparent sm:border-b-2 text-sm px-3 sm:border-gray-400 font-bold transition duration-300 text-white sm:hover:border-black sm:hover:text-black inline-block uppercase sm:text-gray-500">
               Submit
             </button>
           </div>

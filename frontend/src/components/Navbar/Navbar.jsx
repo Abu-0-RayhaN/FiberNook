@@ -39,7 +39,7 @@ const Navbar = () => {
             </Link>
           </div>
           <Link to={"/"} className="font-Rubik">
-            <span className="font-bold text-4xl">
+            <span className="font-bold text-3xl sm:text-4xl">
               <span className="text-blue-500">F</span>
               <span className="text-yellow-500">i</span>
               <span className="text-green-500">b</span>
@@ -58,9 +58,9 @@ const Navbar = () => {
             >
               {" "}
               {access_token ? (
-                <FaUserCheck className="w-8 h-8" />
+                <FaUserCheck className="w-6 h-6 sm:w-8 sm:h-8" />
               ) : (
-                <FaUser className="w-8 h-8" />
+                <FaUser className="w-6 h-6 sm:w-8 sm:h-8" />
               )}
               {access_token ? (
                 <span className="pl-2 hidden md:flex font-Manrope">
@@ -74,16 +74,16 @@ const Navbar = () => {
               to="/cart"
               className="flex items-center gap-2 hover:text-red-500"
             >
-              <FaShoppingBag className="w-8 h-8" />
+              <FaShoppingBag className="w-6 h-6 sm:w-8 sm:h-8" />
               <span className="md:flex hidden">Cart</span>
             </NavLink>
             {/* navbar for small device */}
             <div className="md:hidden">
               <button onClick={toggleMenu}>
                 {MenuOpen ? (
-                  <FaTimes className="w-8 h-8 text-black mt-3" />
+                  <FaTimes className="w-6 h-6 sm:w-8 sm:h-8 text-black mt-3" />
                 ) : (
-                  <FaBars className="w-8 h-8 text-black mt-3" />
+                  <FaBars className="w-6 h-6 sm:w-8 sm:h-8 text-black mt-3" />
                 )}
               </button>
             </div>

@@ -24,7 +24,7 @@ const LoginReg = () => {
 
   return (
     <>
-      <Grid container sx={{ marginBottom: "10px" }}>
+      <Grid container sx={{ marginBottom: "60px" }}>
         <Grid
           item
           lg={7}
