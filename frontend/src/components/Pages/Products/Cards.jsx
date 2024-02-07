@@ -13,7 +13,7 @@ const Cards = ({ product }) => {
         <img
           src={image}
           alt={title}
-          className="card-image w-[312px] h-[400px]"
+          className="card-image w-[312px] h-[350px]"
         />
         <div className="mx-2 mt-4 mb-2">
           <h3 className="text-lg text-black">{title}</h3>

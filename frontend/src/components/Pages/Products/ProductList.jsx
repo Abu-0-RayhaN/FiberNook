@@ -79,7 +79,7 @@ const ProductList = () => {
 
       {/* Category List  */}
       <div className="flex md:flex-row flex-col justify-between mt-12 gap-5 md:gap-0 items-center">
-        <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap">
+        <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap font-Roboto">
           <button onClick={() => setCategory("all products")}>
             All products
           </button>

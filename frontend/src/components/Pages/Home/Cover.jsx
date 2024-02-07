@@ -13,7 +13,7 @@ const Cover = () => {
           </p>
           <Link
             to={`/shop`}
-            className="bg-gray-900 hover:bg-orange-500 px6 py-2 text-white font-semibold rounded-md p-5 inline-flex items-center gap-2"
+            className="bg-black hover:bg-orange-500 px6 py-2 text-white font-semibold rounded-md p-5 inline-flex items-center gap-2"
           >
             <FaShoppingBag />
             Shop Now

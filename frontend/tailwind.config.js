@@ -11,6 +11,8 @@ export default {
         PoorStory: ["Poor Story", "sans-serif"],
         Roboto: ["Roboto Condensed", "sans-serif"],
         Rubik: ["Rubik Glitch Pop", "sans-serif"],
+        Kdam: ["Kdam Thmor Pro", "sans-serif"],
+        Protest: ["Protest Guerrilla", "sans-serif"],
       },
     },
   },

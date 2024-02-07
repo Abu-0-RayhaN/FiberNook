@@ -29,12 +29,18 @@ const Navbar = () => {
   return (
     <>
       <header className="max-w-screen-2xl xl:px-0 px-4 sticky bg-white z-50 top-0 left-0 right-0">
-        <nav className="container flex justify-between items-center mx-auto pt-6 pb-3">
+        <nav className="container flex justify-between items-center mx-auto pt-3 pb-3">
           <div className="hidden md:flex gap-2 font-Kanit font-semibold">
-            <Link to={`/shop`} className=" p-2 hover:bg-gray-100 rounded-md">
+            <Link
+              to={`/shop`}
+              className=" p-2 hover:bg-gray-100 rounded-md font-Roboto text-lg"
+            >
               About
             </Link>
-            <Link to={`/shop`} className=" p-2 hover:bg-gray-100 rounded-md">
+            <Link
+              to={`/shop`}
+              className=" p-2 hover:bg-gray-950 rounded-lg bg-black text-white  font-Kdam"
+            >
               FiberNook Stories
             </Link>
           </div>
@@ -63,19 +69,19 @@ const Navbar = () => {
                 <FaUser className="w-6 h-6 sm:w-8 sm:h-8" />
               )}
               {access_token ? (
-                <span className="pl-2 hidden md:flex font-Manrope">
+                <span className="pl-2 hidden md:flex font-Protest">
                   Dashboard
                 </span>
               ) : (
-                <span className="pl-2 hidden md:flex font-Manrope">Login</span>
+                <span className="pl-2 hidden md:flex font-Protest">Login</span>
               )}
             </NavLink>
             <NavLink
               to="/cart"
-              className="flex items-center gap-2 hover:text-red-500"
+              className="flex items-center gap-2 hover:text-red-500 "
             >
               <FaShoppingBag className="w-6 h-6 sm:w-8 sm:h-8" />
-              <span className="md:flex hidden">Cart</span>
+              <span className="md:flex hidden font-Protest">Cart</span>
             </NavLink>
             {/* navbar for small device */}
             <div className="md:hidden">
