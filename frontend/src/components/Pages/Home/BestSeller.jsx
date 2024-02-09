@@ -15,7 +15,7 @@ const BestSeller = () => {
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-12 px-4 pb-12">
       <div className="flex flex-col justify-center text-center items-center mb-10">
-        <h1 className="title">Best Sellers</h1>
+        <h1 className="title font-Protest">Best Sellers</h1>
         <p className="text-gray-700 capitalize md:mx-10">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           Reprehenderit saepe quibusdam beatae iure doloribus. In enim possimus

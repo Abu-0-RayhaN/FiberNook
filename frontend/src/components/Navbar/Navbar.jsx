@@ -97,8 +97,8 @@ const Navbar = () => {
         </nav>
         <hr className="hidden md:flex" />
         {/* Items Categories  */}
-        <div className="pt-4 md:px-12">
-          <ul className="md:flex items-center justify-evenly text-black hidden font-Roboto text-center">
+        <div className="hidden md:block pt-4 md:px-6">
+          <ul className="md:flex items-center justify-center text-black hidden font-Roboto text-center gap-10">
             {/* Manually code each list item */}
             <li className="hover:text-orange-500 ">
               <NavLink to="/shop">New Arrivals</NavLink>

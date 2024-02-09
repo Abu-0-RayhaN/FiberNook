@@ -34,12 +34,12 @@ const HomeProducts = () => {
     setSortingOption(option);
   };
   return (
-    <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
-      <h2 className="title">Or Subscribe to the newsletter</h2>
+    <div className="max-w-screen-2xl container py-12 xl:px-12 px-4 pb-12">
+      <h2 className="title font-Protest"> Products to boast you confidence</h2>
 
       {/* Category List  */}
       <div className="flex md:flex-row flex-col justify-between mt-12 gap-5 md:gap-0 items-center">
-        <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap">
+        <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap font-Roboto">
           <button onClick={() => setCategory("all products")}>
             All products
           </button>

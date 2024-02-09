@@ -15,7 +15,7 @@ const Collection = () => {
             Exclusively Offered At The Reopened Giorgio Armani Boutique In Los
             Angeles.
           </p>
-          <button className="px-6 py-2 bg-white rounded-sm text-black text-lg inline-block">
+          <button className="px-6 py-2 bg-white rounded-sm text-black text-lg inline-block font-Protest">
             <Link to={`/shop`}>See Collections</Link>
           </button>
         </div>
