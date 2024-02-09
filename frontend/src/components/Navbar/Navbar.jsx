@@ -39,7 +39,7 @@ const Navbar = () => {
             </Link>
             <Link
               to={`/shop`}
-              className=" p-2 hover:bg-gray-950 rounded-lg bg-black text-white  font-Kdam"
+              className=" p-2 hover:bg-gray-950 bg-black text-white  font-Kdam"
             >
               FiberNook Stories
             </Link>

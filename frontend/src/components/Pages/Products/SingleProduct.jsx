@@ -10,6 +10,11 @@ import { setTitle } from "../../../features/titleSlice";
 import { getToken } from "../../../services/LocalStorageService";
 import { CircularProgress } from "@mui/material";
 import CustomerReview from "./CustomerReview";
+import { FaStar, FaShippingFast, FaUndo, FaGift } from "react-icons/fa";
+import { MdOutlineAutorenew } from "react-icons/md";
+import { TbVacuumCleaner } from "react-icons/tb";
+import { DiMaterializecss } from "react-icons/di";
+
 const SingleProduct = () => {
   //title setup
   const dispatch = useDispatch();
@@ -72,24 +77,34 @@ const SingleProduct = () => {
 
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
-      <Link
-        to={`/`}
-        className="text-gray-800 font-Roboto text-right hover:text-red-500"
-      >
-        Home /
-      </Link>
-      <Link to={`shop`} className="hover:text-red-500 font-Roboto">
-        {" "}
-        Shop /
-      </Link>
-      <div className="flex flex-col md:flex-row items-center">
+      <div className="pb-5">
+        <Link
+          to={`/`}
+          className="text-gray-800 font-Roboto text-right hover:text-red-500"
+        >
+          Home /
+        </Link>
+        <Link to={`/shop`} className="hover:text-red-500 font-Roboto">
+          {" "}
+          Shop /
+        </Link>
+      </div>
+      <div className="flex flex-col md:flex-row items-center md:items-start">
         <div className="md:w-1/2">
           <img src={image} alt={title} className="w-full h-auto" />
         </div>
-        <div className="md:w-1/2 md:ml-8 mt-8 md:mt-0 mx-1">
+        <div className="md:w-1/2 md:ml-8 md:mt-0 mx-1 flex flex-col">
           <h1 className="text-3xl font-bold mb-4 font-Cute">{title}</h1>
           <p className="text-lg mb-4 font-Roboto">${price}</p>
-          <p className="mt-3 text-gray-600 text-base leading-6 text-justify sm:text-left sm:mt-4 font-Kanit">
+          {/* Rating Star */}
+          <div className="flex items-center mb-4">
+            {Array.from({ length: Math.floor(Math.random() * 2) + 3 }).map(
+              (_, index) => (
+                <FaStar key={index} className="text-black h-5 w-5" />
+              )
+            )}
+          </div>
+          <p className="mt-3 text-gray-600 text-sm leading-6 text-justify sm:text-left sm:mt-4 font-Kdam ">
             {description}
           </p>
           <label htmlFor="" className="font-semibold">
@@ -106,19 +121,92 @@ const SingleProduct = () => {
           />
           <button
             onClick={handleAddToCart}
-            className="p-3 rounded-lg text-white bg-red-500 flex gap-2 justify-center items-center hover:bg-red-400  transition-all duration-200 font-Roboto"
+            className="p-3 text-white bg-black flex gap-2 justify-center items-center hover:bg-slate-900  transition-all duration-200 font-Roboto"
           >
-            {isCartLoading ? <CircularProgress /> : " Add to Cart"}{" "}
-            <FaArrowAltCircleRight />
+            {isCartLoading ? (
+              <CircularProgress className="w-6 h-6" />
+            ) : (
+              " Add to Cart"
+            )}{" "}
+            <FaArrowAltCircleRight className="h-6 w-6" />
           </button>
+          <div className="flex flex-col justify-between mt-3 gap-5">
+            <div className="flex items-center gap-3">
+              <FaShippingFast className="text-black h-10 w-10 mr-2 h" />
+              <div className="flex flex-col">
+                <span className="text-sm font-semibold">Shipping Discount</span>
+                <span className="text-sm">
+                  Reduced rate express shipping on orders over ৳17400.
+                  <br />
+                  <a href="" className="hover:text-blue-400 underline">
+                    Learn more
+                  </a>
+                  .
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-5">
+              <FaUndo className="text-black h-10 w-10 mr-2 h" />
+              <div className="flex flex-col">
+                <span className="text-sm font-semibold">Easy Returns</span>
+                <span className="text-sm">
+                  Return within 45 days of purchase Duties & taxes are
+                  non-refundable.
+                  <br />
+                  <a href="" className="hover:text-blue-400 underline">
+                    Returns Details
+                  </a>
+                  .
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-5">
+              <FaGift className="text-black h-10 w-10 mr-2 h" />
+              <div className="flex flex-col">
+                <span className="text-sm font-semibold">Send It As A Gift</span>
+                <span className="text-sm">
+                  Add a free personalized note during checkout.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col pt-5 gap-3">
+            <h4 className=" text-lg font-bold">Sustainability</h4>
+            <div className="flex gap-5">
+              <div className="flex gap-2">
+                <MdOutlineAutorenew className="h-6 w-6" />
+                <p className="uppercase text-sm">Renewed Materials</p>
+              </div>
+              <div className="flex gap-2">
+                <TbVacuumCleaner className="h-6 w-6" />
+                <p className="uppercase text-sm">cleaner cotton</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       {/* Customer Review Section  */}
       <div>
         <CustomerReview />
       </div>
+      <div className="flex flex-col">
+        <h4>Transparent Pricing</h4>
+        <p>
+          We publish what it costs us to make every one of our products. There
+          are a lot of costs we can not neatly account for - like design,
+          fittings, wear testing, rent on office and retail space - but we
+          believe you deserve to know what goes into making the products you
+          love.
+        </p>
+        <div className="flex">
+          <div className="flex flex-col justify-center">
+            <DiMaterializecss />
+            <p>Materials</p>
+            <p>${price * 0.2}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
-
 export default SingleProduct;

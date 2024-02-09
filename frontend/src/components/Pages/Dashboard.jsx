@@ -10,6 +10,7 @@ import { UnsetUserToken } from "../../features/authSlice";
 import { useGetLoggedUserQuery } from "../../services/userAuthApi";
 import { UnsetUserInfo, setUserInfo } from "../../features/userSlice";
 import { setTitle } from "../../features/titleSlice";
+import { HiOutlineUserCircle } from "react-icons/hi";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const [showChangePassword, setShowChangePassword] = useState(false);
@@ -69,10 +70,11 @@ const Dashboard = () => {
   return (
     <div className="max-w-screen-2xl container py-12 xl:px-28 px-4 pb-12">
       <div className="flex flex-col md:flex-row">
-        <div className="bg-gray-800 text-white p-8 md:w-1/4 w-full">
+        <div className="bg-black text-white p-8 md:w-1/3 w-full">
           <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-          <p className="text-lg">Email: {userData.email}</p>
+          <HiOutlineUserCircle className="h-20 w-20 mx-auto" />
           <p className="text-lg">Name: {userData.name}</p>
+          <p className="text-lg">Email: {userData.email}</p>
           <button
             className="mt-8 bg-yellow-500 text-white px-8 py-3 rounded-full mb-4"
             onClick={handleLogout}
@@ -92,7 +94,7 @@ const Dashboard = () => {
             Change Password
           </button>
         </div>
-        <div className="flex flex-col md:w-3/4 w-full">
+        <div className="flex flex-col md:w-2/3 w-full">
           <div className="bg-white p-4 rounded-md shadow-md">
             <h2 className="text-2xl font-bold mb-4">Your Orders</h2>
             {/* Add your orders list content here */}

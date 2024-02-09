@@ -7,8 +7,8 @@ import { FaGithub, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 const NavTop = () => {
   const texts = [
-    "A good outfit makes everything better. Even your 9 to 5.",
-    "Shape up your denim with our new Way-High® Curve Jean.",
+    "A good outfit makes everything better.",
+    "Shape up your denim with our new Way-High®.",
     "Get early access on launches and offers.",
     "New markdowns just added: Now up to 70% off.",
   ];

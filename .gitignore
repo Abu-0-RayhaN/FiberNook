@@ -8,6 +8,7 @@ backend/shop/migrations/
 # backend/static/product_images/
 backend/posts/migrations
 venv
+myenv
 .env
 # Byte-compiled / optimized / DLL files
 __pycache__/
