@@ -14,7 +14,10 @@ import { FaStar, FaShippingFast, FaUndo, FaGift } from "react-icons/fa";
 import { MdOutlineAutorenew } from "react-icons/md";
 import { TbVacuumCleaner } from "react-icons/tb";
 import { DiMaterializecss } from "react-icons/di";
-
+import { PiAirplaneInFlightFill } from "react-icons/pi";
+import { SiOpensourcehardware } from "react-icons/si";
+import { RxScissors } from "react-icons/rx";
+import { LiaMoneyBillWaveAltSolid } from "react-icons/lia";
 const SingleProduct = () => {
   //title setup
   const dispatch = useDispatch();
@@ -189,24 +192,45 @@ const SingleProduct = () => {
       <div>
         <CustomerReview />
       </div>
-      <div className="flex flex-col">
-        <h4>Transparent Pricing</h4>
-        <p>
+      <div className="flex flex-col justify-center items-center pt-6 gap-5">
+        <h4 className="text-2xl font-bold">Transparent Pricing</h4>
+        <p className="md:mx-40 text-sm text-center">
           We publish what it costs us to make every one of our products. There
           are a lot of costs we can not neatly account for - like design,
           fittings, wear testing, rent on office and retail space - but we
           believe you deserve to know what goes into making the products you
           love.
         </p>
-        <div className="flex">
-          <div className="flex flex-col justify-center">
-            <DiMaterializecss />
-            <p>Materials</p>
-            <p>${price * 0.2}</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 pt-5 font-serif pb-24">
+          <div className="flex flex-col justify-center text-center ">
+            <DiMaterializecss className="h-16 w-20" />
+            <p className="font-serif">Materials</p>
+            <p> ${(price * 0.2).toFixed(2)}</p>
+          </div>
+          <div className="flex flex-col justify-center text-center">
+            <SiOpensourcehardware className="h-16 w-20" />
+            <p>Hardware</p>
+            <p> ${(price * 0.2).toFixed(2)}</p>
+          </div>
+          <div className="flex flex-col justify-center text-center">
+            <RxScissors className="h-16 w-20" />
+            <p>Labor</p>
+            <p> ${(price * 0.3).toFixed(2)}</p>
+          </div>
+          <div className="flex flex-col justify-center text-center">
+            <LiaMoneyBillWaveAltSolid className="h-16 w-20" />
+            <p>Duties</p>
+            <p> ${(price * 0.2).toFixed(2)}</p>
+          </div>
+          <div className="flex flex-col justify-center text-center">
+            <PiAirplaneInFlightFill className="h-16 w-20" />
+            <p>Transport</p>
+            <p> ${(price * 0.1).toFixed(2)}</p>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default SingleProduct;

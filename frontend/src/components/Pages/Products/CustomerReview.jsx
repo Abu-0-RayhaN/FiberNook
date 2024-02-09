@@ -76,7 +76,7 @@ const CustomerReview = () => {
             <div className="flex items-center mb-4">
               <span className="mr-2 text-xl flex gap-2">
                 {Array.from({ length: review.rating }, (_, index) => (
-                  <FaStar key={index} className="text-yellow-500" />
+                  <FaStar key={index} className="text-black" />
                 ))}
               </span>
               <span className="text-gray-600">{`Rated ${review.rating}/5`}</span>
@@ -87,7 +87,7 @@ const CustomerReview = () => {
       </div>
 
       {/* Add Review Form */}
-      <div className="mt-8 mx-auto md:mx-0 p-6 bg-gray-100 rounded-md max-w-md">
+      <div className="mt-8 mx-auto md:mx-0 p-6 bg-gray-100 rounded-sm max-w-md">
         <h3 className="text-lg font-bold mb-4 text-center">Add Your Review</h3>
         <div className="mb-4">
           <label className="mr-2 block">Rating:</label>
@@ -95,7 +95,7 @@ const CustomerReview = () => {
             {Array.from({ length: newReview.rating }, (_, index) => (
               <FaStar
                 key={index}
-                className="text-yellow-500 cursor-pointer"
+                className="text-black cursor-pointer"
                 onClick={() =>
                   setNewReview((prev) => ({ ...prev, rating: index + 1 }))
                 }
