@@ -7,15 +7,17 @@ import ScrollToTop from "./ScrollToTop";
 import Navbar from "../Navbar/Navbar";
 const Layout = () => {
   return (
-    <>
+    <div>
       <CssBaseline />
       <NavTop />
       <Navbar />
-      <Outlet />
-      <ScrollToTop />
-      <Footer />
+      <div className="mx-auto max-w-screen-2xl">
+        <Outlet />
+        <ScrollToTop />
+        <Footer />
+      </div>
       <FooterBottom />
-    </>
+    </div>
   );
 };
 

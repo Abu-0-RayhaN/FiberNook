@@ -1,8 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500&family=Rubik+Glitch+Pop&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500&family=Rubik+Glitch+Pop&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.title{
-    @apply text-3xl font-semibold capitalize text-center my-8
+.title {
+  @apply text-3xl font-semibold capitalize text-center my-8;
+}
+.dropdown {
+  position: absolute;
+  top: 100%; /* This ensures the dropdown starts at the bottom of the parent */
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px); /* Start slightly above */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: flex;
+  width: 100%;
+}
+
+li:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Move to final position */
 }

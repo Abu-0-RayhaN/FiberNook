@@ -1,11 +1,28 @@
 import { FaFilter } from "react-icons/fa";
-// import { products as initialProducts } from "../../../constants";
 import Cards from "./Cards";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setTitle } from "../../../features/titleSlice";
 import { useProductsListQuery } from "../../../services/shopApi";
 import { Link } from "react-router-dom";
+
+const CategorySkeleton = () => (
+  <div className="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
+);
+
+const ProductCardSkeleton = () => (
+  <div className="m-1 w-full">
+    <div className="w-[312px] h-[350px] bg-gray-200 rounded animate-pulse"></div>
+    <div className="mx-2 mt-4 mb-2">
+      <div className="h-6 w-3/4 bg-gray-200 rounded animate-pulse"></div>
+      <div className="flex justify-between mt-2">
+        <div className="h-6 w-1/4 bg-gray-200 rounded animate-pulse"></div>
+        <div className="h-6 w-1/4 bg-gray-200 rounded animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+);
+
 const ProductList = () => {
   const [selectedCategory, setSelectedCategory] = useState("all products");
   const [sortingOption, setSortingOption] = useState("all");
@@ -58,9 +75,11 @@ const ProductList = () => {
   const setSortOption = (option) => {
     setSortingOption(option);
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div className="max-w-screen-2xl container pb-32 py-12 xl:px-12 px-4">
       {/* Search Bar Div at the Top */}
@@ -80,17 +99,27 @@ const ProductList = () => {
       {/* Category List  */}
       <div className="flex md:flex-row flex-col justify-between mt-12 gap-5 md:gap-0 items-center">
         <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap font-Roboto">
-          <button onClick={() => setCategory("all products")}>
-            All products
-          </button>
-          {/* Assuming categories are available in the data */}
-          {Array.from(
-            new Set((products || []).map((item) => item.category))
-          ).map((category) => (
-            <button key={category} onClick={() => setCategory(category)}>
-              {getCatName(category)}
-            </button>
-          ))}
+          {isLoading ? (
+            <>
+              <CategorySkeleton />
+              <CategorySkeleton />
+              <CategorySkeleton />
+              <CategorySkeleton />
+            </>
+          ) : (
+            <>
+              <button onClick={() => setCategory("all products")}>
+                All products
+              </button>
+              {Array.from(
+                new Set((products || []).map((item) => item.category))
+              ).map((category) => (
+                <button key={category} onClick={() => setCategory(category)}>
+                  {getCatName(category)}
+                </button>
+              ))}
+            </>
+          )}
         </div>
 
         {/* Sorting Option */}
@@ -113,7 +142,11 @@ const ProductList = () => {
       </div>
 
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+          {[...Array(8)].map((_, index) => (
+            <ProductCardSkeleton key={index} />
+          ))}
+        </div>
       ) : error ? (
         <p>Error fetching data: {error.message}</p>
       ) : filteredProducts.length > 0 ? (
@@ -132,6 +165,7 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
 const getCatName = (sizeId) => {
   const sizeNames = {
     1: "Jewelry & Accessories",
