@@ -148,7 +148,16 @@ const ProductList = () => {
           ))}
         </div>
       ) : error ? (
-        <p>Error fetching data: {error.message}</p>
+        <div className="text-center my-10 flex flex-col items-center justify-center text-gray-500">
+          {/* Sad icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
+            <path d="M8 15c1.333-1 4.667-1 6 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <circle cx="9" cy="10" r="1" fill="currentColor"/>
+            <circle cx="15" cy="10" r="1" fill="currentColor"/>
+          </svg>
+          An error occurred while fetching products.
+        </div>
       ) : filteredProducts.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
           {filteredProducts.map((product) => (
@@ -156,7 +165,14 @@ const ProductList = () => {
           ))}
         </div>
       ) : (
-        <div className="text-center my-10">
+        <div className="text-center my-10 flex flex-col items-center justify-center text-gray-500">
+          {/* Sad icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
+            <path d="M8 15c1.333-1 4.667-1 6 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <circle cx="9" cy="10" r="1" fill="currentColor"/>
+            <circle cx="15" cy="10" r="1" fill="currentColor"/>
+          </svg>
           No products found for your search criteria.
         </div>
       )}
