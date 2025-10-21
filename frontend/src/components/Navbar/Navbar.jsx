@@ -33,7 +33,7 @@ const Navbar = () => {
           <nav className="container flex justify-between items-center mx-auto pt-3 pb-3">
             <div className="hidden md:flex gap-2 font-Kanit font-semibold">
               <Link
-                to={`/shop`}
+                to={`/about`}
                 className=" p-2 hover:bg-gray-100 rounded-md font-Roboto text-lg"
               >
                 About

@@ -13,6 +13,7 @@ import ProductList from "./components/Pages/Products/ProductList";
 import Cart from "./components/Pages/Cart";
 import Address from "./components/Pages/Address/Address";
 import Checkout from "./components/Pages/Checkout/Checkout";
+import AboutUs from "./components/Pages/AboutUs/AboutUs";
 const App = () => {
   const { access_token } = useSelector((state) => state.auth);
   const title = useSelector((state) => state.title.title);
@@ -46,6 +47,7 @@ const App = () => {
             />
             <Route path="shop/:id" element={<SingleProduct />} />
             <Route path="shop" element={<ProductList />} />
+            <Route path="about" element={<AboutUs />} />
             <Route
               path="cart"
               element={access_token ? <Cart /> : <Navigate to="/login" />}
