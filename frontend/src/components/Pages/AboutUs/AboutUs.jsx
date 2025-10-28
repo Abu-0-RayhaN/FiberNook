@@ -96,7 +96,6 @@ const AboutUs = () => {
             color: palette.accent,
             border: "1px solid rgba(15,23,42,0.08)",
             padding: "12px 16px",
-            borderRadius: 8,
             cursor: "pointer",
             fontWeight: 600,
         },
@@ -162,18 +161,6 @@ const AboutUs = () => {
         smallMuted: { fontSize: 13, color: palette.muted },
     };
 
-    const handleSubscribe = (e) => {
-        e.preventDefault();
-        const email = e.target.elements?.email?.value;
-        if (!email) {
-            alert("Please enter your email.");
-            return;
-        }
-        console.log("Subscribe:", email);
-        alert("Thanks — you'll receive updates from FiberNook!");
-        e.target.reset();
-    };
-
     return (
         <section style={styles.section} aria-labelledby="about-fibernook">
             <div style={styles.container}>
@@ -184,10 +171,9 @@ const AboutUs = () => {
                     </h1>
 
                     <p style={styles.subtitle}>
-                        We curate contemporary apparel and accessories inspired by street
-                        culture and elevated basics. From thoughtful fabrics to mindful
-                        production, FiberNook brings together trusted brands and emerging
-                        designers to help you build a wardrobe that feels like you.
+                        We curate contemporary apparel and accessories inspired by street culture, modern aesthetics, and the effortless confidence of everyday wear. Each piece reflects a balance between creativity and functionality, designed for those who value individuality and self-expression in what they wear.
+
+From thoughtful fabrics to mindful production, FiberNook brings together trusted global brands and emerging independent designers who share our vision for sustainability, quality, and timeless design. We’re here to help you build a wardrobe that not only looks good but also feels authentic, comfortable, and uniquely yours.
                     </p>
 
                     <div style={styles.badges}>
@@ -198,43 +184,19 @@ const AboutUs = () => {
 
                     <div style={styles.actions}>
                         <Link
-                            style={styles.ctaPrimary}
+                            className="p-2 hover:bg-gray-950 bg-black text-white  font-Kdam rounded-md"
                             to={'/shop'}
                             
                         >
                             Shop Best-sellers
                         </Link>
                         <button
-                            style={styles.ctaGhost}
+                            className="p-2 hover:bg-gray-100 text-black  font-Kdam rounded-md"
                             onClick={() => (window.location.href = "/collections")}
                         >
                             Explore Collections
                         </button>
 
-                        <div style={{ marginLeft: "auto" }}>
-                            <form onSubmit={handleSubscribe} style={styles.newsletterRow}>
-                                <input
-                                    name="email"
-                                    type="email"
-                                    placeholder="you@domain.com"
-                                    aria-label="Email for newsletter"
-                                    style={styles.input}
-                                />
-                                <button type="submit" style={styles.ctaPrimary}>
-                                    Join
-                                </button>
-                            </form>
-                            <div style={{ marginTop: 8 }}>
-                                <a
-                                    href="https://instagram.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{ color: palette.muted, textDecoration: "none", fontSize: 13 }}
-                                >
-                                    Follow us on Instagram
-                                </a>
-                            </div>
-                        </div>
                     </div>
 
                     <p style={{ marginTop: 18, ...styles.smallMuted }}>
